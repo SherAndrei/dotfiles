@@ -1,0 +1,3 @@
+
+# to be able to configure local hooks
+\.pre-commit-hooks
