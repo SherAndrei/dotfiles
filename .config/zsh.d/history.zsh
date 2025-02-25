@@ -7,4 +7,3 @@ setopt hist_ignore_all_dups
 HISTFILE=~/.zsh_history
 HISTSIZE=4096
 SAVEHIST=4096
-

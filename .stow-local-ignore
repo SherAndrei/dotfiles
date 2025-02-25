@@ -6,3 +6,4 @@
 ^/LICENSE.*
 ^/COPYING
 
+\.pre-commit-config.yaml
