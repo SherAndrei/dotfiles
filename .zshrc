@@ -4,16 +4,15 @@
 #promptinit
 #prompt redhat
 
-setopt histignorealldups sharehistory
-
 # allow ctrl arrow-key usage
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
 
-# Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
-HISTSIZE=1000
-SAVEHIST=1000
-HISTFILE=~/.zsh_history
+
+ZSH_CONFIG_DIR="${HOME}/.config/zsh.d"
+
+# These are sorted alphabetically
+. "$ZSH_CONFIG_DIR"/history.zsh
 
 # Use modern completion system
 autoload -Uz compinit
