@@ -1,9 +1,3 @@
-# Set up the prompt
-
-#autoload -Uz promptinit
-#promptinit
-#prompt redhat
-
 # allow ctrl arrow-key usage
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
@@ -13,20 +7,11 @@ ZSH_CONFIG_DIR="${HOME}/.config/zsh.d"
 
 # These are sorted alphabetically
 . "$ZSH_CONFIG_DIR"/history.zsh
+. "$ZSH_CONFIG_DIR"/prompt.zsh
 
 # Use modern completion system
 autoload -Uz compinit
 compinit
-
-# include the branch name in the prompt on the right side
-# source: https://git-scm.com/book/en/v2/Appendix-A%3A-Git-in-Other-Environments-Git-in-Zsh
-autoload -Uz vcs_info
-precmd_vcs_info() { vcs_info }
-precmd_functions+=( precmd_vcs_info )
-setopt prompt_subst
-RPROMPT='${vcs_info_msg_0_}'
-#PROMPT='${vcs_info_msg_0_}%# '
-zstyle ':vcs_info:git:*' formats '%b'
 
 #########
 
