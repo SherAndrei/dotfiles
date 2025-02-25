@@ -25,8 +25,10 @@ function _create_lprompt {
 function _create_rprompt {
   local prompt=""
 
+  # Print last exit code
+  prompt+=" %B%?%b |"
+
   # Current time of day in 24-hour format, with seconds.
-  # In green.
   # source: https://zsh.sourceforge.io/Doc/Release/Prompt-Expansion.html#Date-and-time
   prompt+=" %F{cyan}%*%f"
 
