@@ -7,3 +7,9 @@ repos:
     -   id: trailing-whitespace
     -   id: end-of-file-fixer
     -   id: check-yaml
+-   repo: local
+    hooks:
+    - id: generate-dotfiles-readme
+      name: Generate Dotfiles README.md
+      entry: zsh -c '(echo "# Dotfiles" && echo && scripts/md-tree.zsh --exclude-dir .git --exclude-dir scripts --exclude .pre-commit-config.yaml --exclude README.md --exclude .stow-local-ignore) > README.md; git add README.md;'
+      language: system

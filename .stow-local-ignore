@@ -7,3 +7,5 @@
 ^/COPYING
 
 \.pre-commit-config.yaml
+
+scripts
