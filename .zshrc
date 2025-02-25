@@ -1,12 +1,9 @@
-# allow ctrl arrow-key usage
-bindkey "^[[1;5C" forward-word
-bindkey "^[[1;5D" backward-word
-
 
 ZSH_CONFIG_DIR="${HOME}/.config/zsh.d"
 
 # These are sorted alphabetically
 . "$ZSH_CONFIG_DIR"/history.zsh
+. "$ZSH_CONFIG_DIR"/keybindings.zsh
 . "$ZSH_CONFIG_DIR"/prompt.zsh
 
 # Use modern completion system
