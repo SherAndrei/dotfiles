@@ -65,27 +65,6 @@ function grename() {
 }
 
 #
-# Functions Work in Progress (WIP)
-# (sorted alphabetically by function name)
-# (order should follow README)
-#
-
-# Similar to `gunwip` but recursive "Unwips" all recent `--wip--` commits not just the last one
-function gunwipall() {
-  local _commit=$(git log --grep='--wip--' --invert-grep --max-count=1 --format=format:%H)
-
-  # Check if a commit without "--wip--" was found and it's not the same as HEAD
-  if [[ "$_commit" != "$(git rev-parse HEAD)" ]]; then
-    git reset $_commit || return 1
-  fi
-}
-
-# Warn if the current branch is a WIP
-function work_in_progress() {
-  command git -c log.showSignature=false log -n 1 2>/dev/null | grep -q -- "--wip--" && echo "WIP!!"
-}
-
-#
 # Aliases
 # (sorted alphabetically by command)
 # (order should follow README)
@@ -94,22 +73,12 @@ function work_in_progress() {
 
 alias grt='cd "$(git rev-parse --show-toplevel || echo .)"'
 
-function ggpnp() {
-  if [[ "$#" == 0 ]]; then
-    ggl && ggp
-  else
-    ggl "${*}" && ggp "${*}"
-  fi
-}
-compdef _git ggpnp=git-checkout
-
-alias ggpur='ggu'
 alias g='git'
-alias ga='git add'
-alias gaa='git add --all'
+alias ga='git   add'
+alias gaa='git  add --all'
 alias gapa='git add --patch'
-alias gau='git add --update'
-alias gav='git add --verbose'
+alias gau='git  add --update'
+alias gav='git  add --verbose'
 alias gwip='git add -A; git rm $(git ls-files --deleted) 2> /dev/null; git commit --no-verify --no-gpg-sign --message "--wip-- [skip ci]"'
 
 function gbda() {
@@ -138,65 +107,42 @@ alias gcb='git checkout -b'
 alias gcB='git checkout -B'
 alias gcom='git checkout origin/$(git_main_branch)'
 
-function gccd() {
-  setopt localoptions extendedglob
+alias gcam='git  commit           --all --message'
+alias gcm='git   commit                 --message'
+alias gc='git    commit --verbose'
+alias gca='git   commit --verbose                 --amend'
+alias gcaa='git  commit --verbose --all           --amend'
+alias gcan='git  commit --verbose                 --amend --no-edit'
+alias gcaan='git commit --verbose --all           --amend --no-edit'
 
-  # get repo URI from args based on valid formats: https://git-scm.com/docs/git-clone#URLS
-  local repo="${${@[(r)(ssh://*|git://*|ftp(s)#://*|http(s)#://*|*@*)(.git/#)#]}:-$_}"
-
-  # clone repository and exit if it fails
-  command git clone --recurse-submodules "$@" || return
-
-  # if last arg passed was a directory, that's where the repo was cloned
-  # otherwise parse the repo URI and use the last part as the directory
-  [[ -d "$_" ]] && cd "$_" || cd "${${repo:t}%.git/#}"
-}
-compdef _git gccd=git-clone
-
-alias gcam='git commit --all --message'
-alias gcm='git commit --message'
-alias gc='git commit --verbose'
-alias gca='git commit --verbose --amend'
-alias gcaa='git commit --verbose --all --amend'
-alias gcan='git commit --verbose --no-edit --amend'
-alias gcaan='git commit --verbose --all --no-edit --amend'
-alias gd='git diff'
+alias gd='git   diff'
 alias gdca='git diff --cached'
 alias gdcw='git diff --cached --word-diff'
-alias gds='git diff --staged'
-alias gdw='git diff --word-diff'
+alias gds='git  diff --staged'
+alias gdw='git  diff --word-diff'
 
 function gdv() { git diff -w "$@" | view - }
-compdef _git gdv=git-diff
 
 alias gdup='git diff @{upstream}'
 
 function gdnolock() {
   git diff "$@" ":(exclude)package-lock.json" ":(exclude)*.lock"
 }
-compdef _git gdnolock=git-diff
 
 alias gdt='git diff-tree --no-commit-id --name-only -r'
 alias gf='git fetch'
-# --jobs=<n> was added in git 2.8
-is-at-least 2.8 "$git_version" \
-  && alias gfa='git fetch --all --tags --prune --jobs=10' \
-  || alias gfa='git fetch --all --tags --prune'
-alias gfo='git fetch origin'
-alias gg='git gui citool'
-alias gga='git gui citool --amend'
-alias ghh='git help'
-alias glgg='git log --graph'
+
+alias glgg='git  log --graph'
 alias glgga='git log --graph --decorate --all'
-alias glgm='git log --graph --max-count=10'
-alias glods='git log --graph --pretty="%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset" --date=short'
-alias glod='git log --graph --pretty="%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset"'
-alias glola='git log --graph --pretty="%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset" --all'
-alias glols='git log --graph --pretty="%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset" --stat'
-alias glol='git log --graph --pretty="%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset"'
-alias glo='git log --oneline --decorate'
-alias glog='git log --oneline --decorate --graph'
-alias gloga='git log --oneline --decorate --graph --all'
+alias glgm='git  log --graph --max-count=10'
+alias glods='git log --graph            --pretty="%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset" --date=short'
+alias glod='git  log --graph            --pretty="%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset"'
+alias glola='git log --graph            --pretty="%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset" --all'
+alias glols='git log --graph            --pretty="%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset" --stat'
+alias glol='git  log --graph            --pretty="%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset"'
+alias glo='git   log         --decorate --oneline'
+alias glog='git  log --graph --decorate --oneline  '
+alias gloga='git log --graph --decorate --oneline --all'
 
 # Pretty log messages
 function _git_log_prettily(){
@@ -204,41 +150,12 @@ function _git_log_prettily(){
     git log --pretty=$1
   fi
 }
-compdef _git _git_log_prettily=git-log
 
 alias glp='_git_log_prettily'
 alias glg='git log --stat'
 alias glgp='git log --stat --patch'
 alias gignored='git ls-files -v | grep "^[[:lower:]]"'
 alias gfg='git ls-files | grep'
-
-alias gl='git pull'
-alias gpr='git pull --rebase'
-alias gprv='git pull --rebase -v'
-alias gpra='git pull --rebase --autostash'
-alias gprav='git pull --rebase --autostash -v'
-
-function ggu() {
-  [[ "$#" != 1 ]] && local b="$(git_current_branch)"
-  git pull --rebase origin "${b:=$1}"
-}
-compdef _git ggu=git-checkout
-
-alias gprom='git pull --rebase origin $(git_main_branch)'
-alias gpromi='git pull --rebase=interactive origin $(git_main_branch)'
-alias gprum='git pull --rebase upstream $(git_main_branch)'
-alias gprumi='git pull --rebase=interactive upstream $(git_main_branch)'
-alias ggpull='git pull origin "$(git_current_branch)"'
-
-function ggl() {
-  if [[ "$#" != 0 ]] && [[ "$#" != 1 ]]; then
-    git pull origin "${*}"
-  else
-    [[ "$#" == 0 ]] && local b="$(git_current_branch)"
-    git pull origin "${b:=$1}"
-  fi
-}
-compdef _git ggl=git-checkout
 
 alias gpf!='git push --force'
 is-at-least 2.30 "$git_version" \
@@ -249,14 +166,8 @@ function ggfl() {
   [[ "$#" != 1 ]] && local b="$(git_current_branch)"
   git push --force-with-lease origin "${b:=$1}"
 }
-compdef _git ggfl=git-checkout
 
-alias gpsup='git push --set-upstream origin $(git_current_branch)'
-is-at-least 2.30 "$git_version" \
-  && alias gpsupf='git push --set-upstream origin $(git_current_branch) --force-with-lease --force-if-includes' \
-  || alias gpsupf='git push --set-upstream origin $(git_current_branch) --force-with-lease'
 alias gpv='git push --verbose'
-alias gpoat='git push origin --all && git push origin --tags'
 alias gpod='git push origin --delete'
 alias ggpush='git push origin "$(git_current_branch)"'
 
@@ -268,7 +179,6 @@ function ggp() {
     git push origin "${b:=$1}"
   fi
 }
-compdef _git ggp=git-checkout
 
 alias gr='git rebase'
 alias gra='git rebase --abort'
@@ -292,7 +202,5 @@ alias gwtmv='git worktree move'
 alias gwtrm='git worktree remove'
 alias gstu='gsta --include-untracked'
 alias gtl='gtl(){ git tag --sort=-v:refname -n --list "${1}*" }; noglob gtl'
-alias gk='\gitk --all --branches &!'
-alias gke='\gitk --all $(git log --walk-reflogs --pretty=%h) &!'
 
 unset git_version
