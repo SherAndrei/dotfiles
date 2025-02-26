@@ -11,3 +11,4 @@ scripts/md-tree.zsh \
     --exclude-dir .config/zsh.d/pure \
     --exclude-dir .git \
     --exclude-dir scripts \
+    --exclude-dir tmp \
