@@ -14,3 +14,6 @@
         autosetuprebase = always
 [pull] # enforce --rebase on git pull
         rebase = true
+[fetch] # These maintain a 1=1 mapping to upstream refs
+	prune = true
+	pruneTags = true
