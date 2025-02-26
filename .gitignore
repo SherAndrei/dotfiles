@@ -1,3 +1,11 @@
 
+# common non-related to projects stuff
+*.json
+*.log
+*.txt
+
+# git mergetool backup
+*.orig
+
 # to be able to configure local hooks
 \.pre-commit-hooks
