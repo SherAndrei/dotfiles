@@ -1,5 +1,8 @@
 [core]
 	editor = vim
 	excludesfile = ~/.gitignore
+	autocrlf = false
+	eol = lf
+	tabwidth = 2
 [init]
 	defaultBranch = master
