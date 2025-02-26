@@ -4,6 +4,8 @@
   - [zsh.d](./.config/zsh.d)
     - [completion.zsh](./.config/zsh.d/completion.zsh)
     - [directories.zsh](./.config/zsh.d/directories.zsh)
+    - [functions](./.config/zsh.d/functions)
+      - [is_wsl](./.config/zsh.d/functions/is_wsl)
     - [git.zsh](./.config/zsh.d/git.zsh)
     - [history.zsh](./.config/zsh.d/history.zsh)
     - [keybindings.zsh](./.config/zsh.d/keybindings.zsh)

@@ -10,6 +10,8 @@ ZSH_CONFIG_DIR="${HOME}/.config/zsh.d"
 . "$ZSH_CONFIG_DIR"/prompt.zsh
 . "$ZSH_CONFIG_DIR"/zsh-autosuggestions/zsh-autosuggestions.zsh
 
+export FPATH="$ZSH_CONFIG_DIR/functions:$FPATH"
+
 # Disable beeping
 setopt NO_BEEP
 

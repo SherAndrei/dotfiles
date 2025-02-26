@@ -1,3 +1,15 @@
+
+# wsl's git is slow on windows filesystem
+# source: https://github.com/microsoft/WSL/issues/4401
+
+() {
+  autoload -U is_wsl
+
+  if is_wsl; then
+    alias git="git.exe"
+  fi
+}
+
 # This script is based on
 # https://github.com/ohmyzsh/ohmyzsh/blob/6e7ac0544e71c7b777746cb50f70de68c6495b86/plugins/git/git.plugin.zsh
 
