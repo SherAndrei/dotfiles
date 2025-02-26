@@ -9,5 +9,11 @@ ZSH_CONFIG_DIR="${HOME}/.config/zsh.d"
 . "$ZSH_CONFIG_DIR"/prompt.zsh
 . "$ZSH_CONFIG_DIR"/zsh-autosuggestions/zsh-autosuggestions.zsh
 
+# Disable beeping
+setopt NO_BEEP
+
+# Recognize comments on the command line
+setopt INTERACTIVE_COMMENTS
+
 # Created by `pipx`
 export PATH="$PATH:${HOME}/.local/bin"
