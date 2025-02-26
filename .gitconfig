@@ -10,3 +10,7 @@
 	wsErrorHighlight = old,new
 	colorMovedWS = allow-indentation-change
 	colorMoved = dimmed-zebra
+[branch] # if a new branch tracks another branch, this variable tells Git to set up pull to rebase instead of merge
+        autosetuprebase = always
+[pull] # enforce --rebase on git pull
+        rebase = true
