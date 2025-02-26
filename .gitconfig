@@ -6,3 +6,7 @@
 	tabwidth = 2
 [init]
 	defaultBranch = master
+[diff]
+	wsErrorHighlight = old,new
+	colorMovedWS = allow-indentation-change
+	colorMoved = dimmed-zebra
