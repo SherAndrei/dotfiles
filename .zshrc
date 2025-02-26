@@ -6,6 +6,7 @@ ZSH_CONFIG_DIR="${HOME}/.config/zsh.d"
 . "$ZSH_CONFIG_DIR"/history.zsh
 . "$ZSH_CONFIG_DIR"/keybindings.zsh
 . "$ZSH_CONFIG_DIR"/prompt.zsh
+. "$ZSH_CONFIG_DIR"/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Use modern completion system
 autoload -Uz compinit

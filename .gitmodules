@@ -1,3 +1,6 @@
 [submodule ".config/zsh.d/pure"]
 	path = .config/zsh.d/pure
 	url = https://github.com/sindresorhus/pure.git
+[submodule ".config/zsh.d/zsh-autosuggestions"]
+	path = .config/zsh.d/zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions.git
