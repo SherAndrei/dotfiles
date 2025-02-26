@@ -1,5 +1,6 @@
 # Dotfiles
 
+- [.bashrc](./.bashrc)
 - [.config](./.config)
   - [zsh.d](./.config/zsh.d)
     - [completion.zsh](./.config/zsh.d/completion.zsh)
