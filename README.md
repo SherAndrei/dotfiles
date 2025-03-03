@@ -2,6 +2,8 @@
 
 - [.bashrc](./.bashrc)
 - [.config](./.config)
+  - [pypoetry](./.config/pypoetry)
+    - [config.toml](./.config/pypoetry/config.toml)
   - [zsh.d](./.config/zsh.d)
     - [completion.zsh](./.config/zsh.d/completion.zsh)
     - [directories.zsh](./.config/zsh.d/directories.zsh)
