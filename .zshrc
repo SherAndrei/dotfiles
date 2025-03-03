@@ -20,3 +20,7 @@ setopt INTERACTIVE_COMMENTS
 
 # Created by `pipx`
 export PATH="$PATH:${HOME}/.local/bin"
+
+# must be at the end of .zshrc
+# source: https://github.com/zsh-users/zsh-syntax-highlighting?tab=readme-ov-file#faq
+. "$ZSH_CONFIG_DIR"/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

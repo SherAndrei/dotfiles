@@ -4,3 +4,6 @@
 [submodule ".config/zsh.d/zsh-autosuggestions"]
 	path = .config/zsh.d/zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions.git
+[submodule ".config/zsh.d/zsh-syntax-highlighting"]
+	path = .config/zsh.d/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting.git

@@ -10,6 +10,7 @@ scripts/md-tree.zsh \
     --exclude README.md \
     --exclude-dir .config/zsh.d/pure \
     --exclude-dir .config/zsh.d/zsh-autosuggestions \
+    --exclude-dir .config/zsh.d/zsh-syntax-highlighting \
     --exclude-dir .git \
     --exclude-dir scripts \
     --exclude-dir tmp \
