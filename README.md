@@ -2,6 +2,9 @@
 
 - [.bashrc](./.bashrc)
 - [.config](./.config)
+  - [Code](./.config/Code)
+    - [User](./.config/Code/User)
+      - [settings.json](./.config/Code/User/settings.json)
   - [pypoetry](./.config/pypoetry)
     - [config.toml](./.config/pypoetry/config.toml)
   - [zsh.d](./.config/zsh.d)
