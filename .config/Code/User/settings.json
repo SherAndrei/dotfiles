@@ -1,0 +1,14 @@
+{
+    "chat.commandCenter.enabled": false,
+    "editor.glyphMargin": true,
+    "editor.guides.bracketPairs": true,
+    "editor.renderWhitespace": "all",
+    "explorer.confirmDelete": false,
+    "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 1000,
+    "files.eol": "\n",
+    "files.trimFinalNewlines": true,
+    "files.trimTrailingWhitespace": true,
+    "workbench.tree.indent": 10,
+    "workbench.tree.renderIndentGuides": "always"
+}
