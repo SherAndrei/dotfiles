@@ -6,7 +6,9 @@ filetype on
 filetype plugin on
 filetype indent on
 
-" syntax on
+syntax on
+
+colorscheme desert
 
 " add current line number
 set number
