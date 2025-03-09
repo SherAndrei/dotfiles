@@ -20,6 +20,7 @@
 - [.gitconfig](./.gitconfig)
 - [.gitignore](./.gitignore)
 - [.vimrc](./.vimrc)
+- [.zprofile](./.zprofile)
 - [.zshrc](./.zshrc)
 ---
 
