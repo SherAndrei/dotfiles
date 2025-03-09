@@ -1,4 +1,9 @@
 
+BASH_CONFIG_DIR="${HOME}/.config/bash.d"
+
+# These are sorted alphabetically
+. "$BASH_CONFIG_DIR"/ls.sh
+
 ZSH_CONFIG_DIR="${HOME}/.config/zsh.d"
 
 # These are sorted alphabetically
