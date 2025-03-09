@@ -19,6 +19,7 @@
 - [.editorconfig](./.editorconfig)
 - [.gitconfig](./.gitconfig)
 - [.gitignore](./.gitignore)
+- [.vimrc](./.vimrc)
 - [.zshrc](./.zshrc)
 ---
 
