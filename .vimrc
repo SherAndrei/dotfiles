@@ -64,7 +64,14 @@ set statusline+=\ %F\ %M\ %Y\ %R
 set statusline+=%=
 
 " status line right side.
-set statusline+=\ row:\ %l\ col:\ %c
+set statusline+=\ [%l\/%L]\ :\ %c\ %p%%
 
 " show the status on the second to last line.
 set laststatus=2
+
+" highlight invisble stuff
+set listchars=trail:·,tab:>→,nbsp:%
+set list
+" highlight whitespaces at the end of lines
+highlight ExtraWhitespace ctermbg=green ctermfg=blue
+match ExtraWhitespace /\s\+$/
