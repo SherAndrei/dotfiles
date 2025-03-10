@@ -9,6 +9,8 @@
     - [ls.sh](./.config/bash.d/ls.sh)
   - [pypoetry](./.config/pypoetry)
     - [config.toml](./.config/pypoetry/config.toml)
+  - [sh.d](./.config/sh.d)
+    - [less.sh](./.config/sh.d/less.sh)
   - [zsh.d](./.config/zsh.d)
     - [completion.zsh](./.config/zsh.d/completion.zsh)
     - [directories.zsh](./.config/zsh.d/directories.zsh)
