@@ -4,6 +4,9 @@ cddotdot() { cd .. ; pwd ; zle reset-prompt }
 zle -N cddotdot
 bindkey "^[OP" cddotdot # F1
 
+# set F2 to get `git status`
+bindkey -s "^[OQ" " git status\n" # F2
+
 # source: https://github.com/ohmyzsh/ohmyzsh/blob/master/lib/key-bindings.zsh
 
 # http://zsh.sourceforge.net/Doc/Release/Zsh-Line-Editor.html
