@@ -11,6 +11,7 @@
     - [config.toml](./.config/pypoetry/config.toml)
   - [sh.d](./.config/sh.d)
     - [less.sh](./.config/sh.d/less.sh)
+  - [tmux.d](./.config/tmux.d)
   - [zsh.d](./.config/zsh.d)
     - [autosuggestions.zsh](./.config/zsh.d/autosuggestions.zsh)
     - [completion.zsh](./.config/zsh.d/completion.zsh)
