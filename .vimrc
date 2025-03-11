@@ -23,8 +23,6 @@ set numberwidth=3
 set cursorline
 set cursorcolumn
 
-set tabstop=2 shiftwidth=2 expandtab
-
 
 " enable auto completion menu after pressing TAB.
 set wildmenu
@@ -68,6 +66,19 @@ set statusline+=\ [%l\/%L]\ :\ %c\ %p%%
 
 " show the status on the second to last line.
 set laststatus=2
+
+
+" copy indent from current line when starting a new line
+set autoindent
+
+" number of spaces to use for each step of (auto)indent.
+set shiftwidth=2
+
+" do not use the appropriate number of spaces to insert a <Tab>.
+set noexpandtab
+
+" number of spaces that a <Tab> in the file counts for.
+set tabstop=2
 
 " highlight invisble stuff
 set listchars=trail:·,tab:>→,nbsp:%
