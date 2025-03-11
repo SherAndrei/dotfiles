@@ -24,7 +24,11 @@
 - [.editorconfig](./.editorconfig)
 - [.gitconfig](./.gitconfig)
 - [.gitignore](./.gitignore)
+- [.hushlogin](./.hushlogin)
+- [.inputrc](./.inputrc)
+- [.tmux.conf](./.tmux.conf)
 - [.vimrc](./.vimrc)
+- [.zprofile](./.zprofile)
 - [.zshrc](./.zshrc)
 ---
 
