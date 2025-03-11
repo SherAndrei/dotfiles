@@ -12,6 +12,7 @@
   - [sh.d](./.config/sh.d)
     - [less.sh](./.config/sh.d/less.sh)
   - [zsh.d](./.config/zsh.d)
+    - [autosuggestions.zsh](./.config/zsh.d/autosuggestions.zsh)
     - [completion.zsh](./.config/zsh.d/completion.zsh)
     - [directories.zsh](./.config/zsh.d/directories.zsh)
     - [functions](./.config/zsh.d/functions)
