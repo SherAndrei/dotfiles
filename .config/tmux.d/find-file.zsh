@@ -1,19 +1,24 @@
 #!/usr/bin/env zsh
-#
-# find-file.zsh: Interactive file finder using fzf.
-#
-# This script interactively searches for files, directories, and symbolic links
-# in a specified directory. It excludes any ".git" directories from the search,
-# cleans up the output paths, and uses fzf to allow the user to choose one or
-# multiple items interactively with a preview (using less).
-#
-# Usage:
-#   find-file.zsh [--separator=<separator>] <directory>
-#
-# Requirements:
-#   - zsh shell
-#   - fzf: A command-line fuzzy finder (https://github.com/junegunn/fzf)
-#   - less: For previewing file contents
+
+function usage() {
+	[[ $# -ge 1 ]] && echo >&2 error: "$@"
+	cat >&2 <<EOF
+Usage: ${0##*/} [--separator=<separator>] <directory>
+
+Interactive file finder using fzf.
+
+This script interactively searches for files, directories, and symbolic links
+in a specified directory. It excludes any ".git" directories from the search,
+cleans up the output paths, and uses fzf to allow the user to choose one or
+multiple items interactively with a preview (using less).
+
+Requirements:
+  - zsh shell
+  - fzf: A command-line fuzzy finder (https://github.com/junegunn/fzf)
+  - less: For previewing file contents
+EOF
+	exit 2
+}
 
 separator='\n'
 
@@ -22,14 +27,8 @@ if [[ "$1" == --separator=* ]]; then
 	shift
 fi
 
-if [[ $# -lt 1 ]]; then
-	echo "Usage: $0 [--separator=<separator>] <directory>"
-	exit 1
-fi
-
-if [ "$#" -ne 1 ]; then
-	echo "Usage: $0 <directory>"
-	exit 1
+if [ "$#" -lt 1 ]; then
+	usage "missing positional argument <directory>"
 fi
 
 set -e
