@@ -1,6 +1,5 @@
 # Dotfiles
 
-- [.Xdefaults](./.Xdefaults)
 - [.bashrc](./.bashrc)
 - [.config](./.config)
   - [Code](./.config/Code)
@@ -28,15 +27,9 @@
 - [.gitconfig](./.gitconfig)
 - [.gitignore](./.gitignore)
 - [.hushlogin](./.hushlogin)
-- [.inputrc](./.inputrc)
 - [.tmux.conf](./.tmux.conf)
 - [.vimrc](./.vimrc)
-- [.zprofile](./.zprofile)
 - [.zshrc](./.zshrc)
-- [tee.cut.log](./tee.cut.log)
-- [tee.find.log](./tee.find.log)
-- [tee.fzf.log](./tee.fzf.log)
-- [tee.perl.log](./tee.perl.log)
 ---
 
 Install using [GNU Stow](https://www.gnu.org/software/stow/):
