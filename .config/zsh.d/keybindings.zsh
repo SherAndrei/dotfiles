@@ -6,6 +6,7 @@ bindkey "^[OP" cddotdot # F1
 
 # set F2 to get `git status`
 bindkey -s "^[OQ" " git status\n" # F2
+bindkey -s "^[OR" " git log --oneline -10\n" # F3
 
 # source: https://github.com/ohmyzsh/ohmyzsh/blob/master/lib/key-bindings.zsh
 
