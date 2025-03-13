@@ -12,6 +12,7 @@
   - [sh.d](./.config/sh.d)
     - [less.sh](./.config/sh.d/less.sh)
   - [tmux.d](./.config/tmux.d)
+    - [fbuild-targets.zsh](./.config/tmux.d/fbuild-targets.zsh)
     - [find-file.zsh](./.config/tmux.d/find-file.zsh)
   - [zsh.d](./.config/zsh.d)
     - [autosuggestions.zsh](./.config/zsh.d/autosuggestions.zsh)
