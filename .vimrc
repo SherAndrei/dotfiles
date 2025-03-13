@@ -51,6 +51,9 @@ set showmatch
 " Use highlighting when doing a search.
 set hlsearch
 
+" Show upper and lower line on match
+set scrolloff=2
+
 
 " clear status line when vimrc is reloaded.
 set statusline=
