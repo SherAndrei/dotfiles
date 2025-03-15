@@ -1,12 +1,44 @@
 
-# set F1 to go to parent dir
-cddotdot() { cd .. ; pwd ; zle reset-prompt }
-zle -N cddotdot
-bindkey "^[OP" cddotdot # F1
+# source: see zshzle(1) man
 
-# set F2 to get `git status`
+# set F1 to go to parent dir
+__cddotdot() { cd .. ; pwd ; zle reset-prompt }
+# create user defined widget to be able to call
+# 'zle' inside builtin bindkey
+zle -N __cddotdot
+bindkey "^[OP" __cddotdot # F1
+
+# '-s' here binds key to a string command
 bindkey -s "^[OQ" " git status\n" # F2
 bindkey -s "^[OR" " git log --oneline -10\n" # F3
+
+
+# <C-b> popups build targets in separate tmux popup window.
+# Currently supports
+# 1. fbuild (searches for `fbuild.bff` in ${PWD} and calls to `-showtargets`)
+__build_targets() {
+	local __appendix_to_lbuffer=""
+
+	local __fbuild=${FBUILD:-fbuild}
+	if command -v "${__fbuild}" 2>&1 >/dev/null;
+	then
+		if [ ! -e "${PWD}/fbuild.bff" ]; then
+			tmux display-message "no fbuild.bff found";
+			return;
+		fi;
+		__appendix_to_lbuffer=$(
+			"${__fbuild}" -showtargets -quiet |
+				sed --expression '1d' --expression='s/\t//' |
+				tr --delete '\r' |
+				fzf-tmux -p -- --no-multi --no-sort
+		)
+	fi;
+
+	LBUFFER+="${__appendix_to_lbuffer}"
+}
+
+zle -N __build_targets
+bindkey "^b" __build_targets
 
 # source: https://github.com/ohmyzsh/ohmyzsh/blob/master/lib/key-bindings.zsh
 
@@ -123,8 +155,6 @@ bindkey -M viins '^[[1;5D' backward-word
 bindkey -M vicmd '^[[1;5D' backward-word
 
 
-bindkey '\ew' kill-region                             # [Esc-w] - Kill from the cursor to the mark
-bindkey -s '\el' 'ls\n'                               # [Esc-l] - run command: ls
 bindkey '^r' history-incremental-search-backward      # [Ctrl-r] - Search backward incrementally for a specified string. The string may begin with ^ to anchor the search to the beginning of the line.
 bindkey ' ' magic-space                               # [Space] - don't do history expansion
 
@@ -133,6 +163,3 @@ bindkey ' ' magic-space                               # [Space] - don't do histo
 autoload -U edit-command-line
 zle -N edit-command-line
 bindkey '\C-x\C-e' edit-command-line
-
-# file rename magick
-bindkey "^[m" copy-prev-shell-word
