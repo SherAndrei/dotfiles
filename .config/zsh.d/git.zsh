@@ -41,21 +41,6 @@ function git_current_branch() {
   echo ${ref#refs/heads/}
 }
 
-# Check for develop and similarly named branches
-function git_develop_branch() {
-  command git rev-parse --git-dir &>/dev/null || return
-  local branch
-  for branch in dev devel develop development; do
-    if command git show-ref -q --verify refs/heads/$branch; then
-      echo $branch
-      return 0
-    fi
-  done
-
-  echo develop
-  return 1
-}
-
 # Check if main exists and use instead of master
 function git_main_branch() {
   command git rev-parse --git-dir &>/dev/null || return
@@ -104,14 +89,14 @@ alias gav='git  add --verbose'
 alias gwip='git add -A; git rm $(git ls-files --deleted) 2> /dev/null; git commit --no-verify --no-gpg-sign --message "--wip-- [skip ci]"'
 
 function gbda() {
-  git branch --no-color --merged | command grep -vE "^([+*]|\s*($(git_main_branch)|$(git_develop_branch))\s*$)" | command xargs git branch --delete 2>/dev/null
+  git branch --no-color --merged | command grep -vE "^([+*]|\s*($(git_main_branch))\s*$)" | command xargs git branch --delete 2>/dev/null
 }
 
 # Copied and modified from James Roeder (jmaroeder) under MIT License
 # https://github.com/jmaroeder/plugin-git/blob/216723ef4f9e8dde399661c39c80bdf73f4076c4/functions/gbda.fish
 function gbds() {
   local default_branch=$(git_main_branch)
-  (( ! $? )) || default_branch=$(git_develop_branch)
+  (( ! $? )) || return
 
   git for-each-ref refs/heads/ "--format=%(refname:short)" | \
     while read branch; do
