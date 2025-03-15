@@ -1,14 +1,30 @@
 
-" disable compatibility with vi
-" set nocompatible
+" disable compatibility with Vi
+" compatibility with Vi does not work together
+" well with some vim settings, e.g. filetype
+" (see `help filetype`)
+set nocompatible
 
+set history=1000        " keep 1000 lines of command line history
+set ruler               " show the cursor position all the time
+
+" enable file type detection
 filetype on
+" load indentation rules and plugins
+" according to the detected filetype.
 filetype plugin on
 filetype indent on
 
+" jump to the last position when reopening a file
+" source: /etc/vim/vimrc on debian 12 (bookworm)
+autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g'\"" | endif
+
+" When a bracket is inserted, briefly jump to the matching one.
+set showmatch
+
+" enables syntax highlighting by default.
 syntax on
 
-colorscheme desert
 
 " add current line number
 set number
@@ -44,9 +60,6 @@ set ignorecase
 " override the ignorecase option if searching for capital letters.
 " This allows search specifically for capital letters.
 set smartcase
-
-" Show matching words during a search.
-set showmatch
 
 " Use highlighting when doing a search.
 set hlsearch
