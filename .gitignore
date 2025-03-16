@@ -1,4 +1,9 @@
 
+# Ignore vim files:
+*~
+*.swp
+*.swo
+
 # common non-related to projects stuff
 *.json
 *.log
