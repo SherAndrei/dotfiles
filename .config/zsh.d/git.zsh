@@ -2,14 +2,13 @@
 # wsl's git is slow on windows filesystem
 # source: https://github.com/microsoft/WSL/issues/4401
 
-__git=$(which git)
 function git() {
   autoload -U is_wsl
 
   if is_wsl && [[ "${PWD}" =~ "/mnt/\w/" ]]; then
     git.exe "$@"
   else
-    "${__git}" "$@"
+    command git "$@"
   fi
 }
 
