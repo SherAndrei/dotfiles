@@ -1,8 +1,12 @@
 
+CONFIG_DIR="${HOME}/.config"
+
+# These are sorted alphabetically
+. "${CONFIG_DIR}/less.d/options.sh"
+
 SH_CONFIG_DIR="${HOME}/.config/sh.d"
 
 # These are sorted alphabetically
-. "$SH_CONFIG_DIR"/less.sh
 
 unset SH_CONFIG_DIR
 
