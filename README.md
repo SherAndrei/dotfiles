@@ -1,12 +1,15 @@
 # Dotfiles
 
 - [.bashrc](./.bashrc)
+- [.bashrc.bak](./.bashrc.bak)
 - [.config](./.config)
   - [bash.d](./.config/bash.d)
     - [ls.sh](./.config/bash.d/ls.sh)
   - [Code](./.config/Code)
     - [User](./.config/Code/User)
       - [settings.json](./.config/Code/User/settings.json)
+  - [gcc.d](./.config/gcc.d)
+    - [colors.sh](./.config/gcc.d/colors.sh)
   - [less.d](./.config/less.d)
     - [options.sh](./.config/less.d/options.sh)
   - [pypoetry](./.config/pypoetry)
@@ -56,5 +59,6 @@ Several rules to abide:
 1. Curious and maybe useful scripts with usage of the application must be placed into the `.config/${SHELL}.d` directory, e.g. best directory to put `git` aliases to is `bash.d` as `alias` is a `bash` builtin function (see bash(1)).
 1. Write as much portable code as possible, meaning if it is `bash` script, but it can be converted to `sh` script only by changing `[[...]]` to `[...]` one should go for it.
 1. More about shell scripting:
-	1. Each shell script must contain correct shebang.
+	1. Callable shell scripts must contain correct shebang.
+	1. If script's purpose is to be sourced elsewhere, please provide some indication in place of the shebang if it is not obvious where the script can be sourced, e.g. although `bash` uses `.sh` suffix for scripts, they cannot be sourced in `sh` shell.
 	1. If one is sourcing other scripts, one should avoid glob (see glob(3)), as they are hard to manage, meaing they are bound to be replaced to non-globs in future.
