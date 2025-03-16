@@ -2,17 +2,16 @@
 
 - [.bashrc](./.bashrc)
 - [.config](./.config)
+  - [bash.d](./.config/bash.d)
+    - [ls.sh](./.config/bash.d/ls.sh)
   - [Code](./.config/Code)
     - [User](./.config/Code/User)
       - [settings.json](./.config/Code/User/settings.json)
-  - [bash.d](./.config/bash.d)
-    - [ls.sh](./.config/bash.d/ls.sh)
   - [pypoetry](./.config/pypoetry)
     - [config.toml](./.config/pypoetry/config.toml)
   - [sh.d](./.config/sh.d)
     - [less.sh](./.config/sh.d/less.sh)
   - [tmux.d](./.config/tmux.d)
-    - [fbuild-targets.zsh](./.config/tmux.d/fbuild-targets.zsh)
     - [find-file.zsh](./.config/tmux.d/find-file.zsh)
   - [zsh.d](./.config/zsh.d)
     - [autosuggestions.zsh](./.config/zsh.d/autosuggestions.zsh)
@@ -33,6 +32,8 @@
 - [.zshrc](./.zshrc)
 ---
 
+### Installation
+
 Install using [GNU Stow](https://www.gnu.org/software/stow/):
 1. Clone repo into home directory
   ```bash
@@ -44,3 +45,15 @@ Install using [GNU Stow](https://www.gnu.org/software/stow/):
   stow .
   cd -
   ```
+
+---
+
+### Contributing
+
+Several rules to abide:
+1. User defined configuration for each application gets its directory in `.config` directory. To differentiate between user defined and application defined configuration, `.d` suffix is preferred.
+1. Curious and maybe useful scripts with usage of the application must be placed into the `.config/${SHELL}.d` directory, e.g. best directory to put `git` aliases to is `bash.d` as `alias` is a `bash` builtin function (see bash(1)).
+1. Write as much portable code as possible, meaning if it is `bash` script, but it can be converted to `sh` script only by changing `[[...]]` to `[...]` one should go for it.
+1. More about shell scripting:
+	1. Each shell script must contain correct shebang.
+	1. If one is sourcing other scripts, one should avoid glob (see glob(3)), as they are hard to manage, meaing they are bound to be replaced to non-globs in future.
