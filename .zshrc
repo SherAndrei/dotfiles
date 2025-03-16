@@ -8,12 +8,16 @@ SH_CONFIG_DIR="${HOME}/.config/sh.d"
 
 # These are sorted alphabetically
 
+export FPATH="$SH_CONFIG_DIR/functions:$FPATH"
+
 unset SH_CONFIG_DIR
 
 BASH_CONFIG_DIR="${HOME}/.config/bash.d"
 
 # These are sorted alphabetically
 . "$BASH_CONFIG_DIR"/ls.sh
+
+export FPATH="$BASH_CONFIG_DIR/functions:$FPATH"
 
 unset BASH_CONFIG_DIR
 
