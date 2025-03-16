@@ -4,6 +4,7 @@ CONFIG_DIR="${HOME}/.config"
 # These are sorted alphabetically
 . "${CONFIG_DIR}/gcc.d/colors.sh"
 . "${CONFIG_DIR}/less.d/options.sh"
+. "${CONFIG_DIR}/rg.d/options.sh"
 
 SH_CONFIG_DIR="${HOME}/.config/sh.d"
 

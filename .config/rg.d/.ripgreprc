@@ -1,0 +1,14 @@
+--color=always
+--colors=column:fg:yellow
+--colors=column:style:bold
+--colors=line:fg:yellow
+--colors=line:style:bold
+--colors=match:bg:yellow
+--colors=match:fg:black
+--colors=match:style:nobold
+--colors=path:fg:green
+--colors=path:style:bold
+--column
+--line-number
+--no-heading
+--smart-case
