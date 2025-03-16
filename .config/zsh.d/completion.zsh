@@ -63,3 +63,5 @@ zstyle '*' single-ignored show
 # and for 'Autoloading functions' in zshmisc(1)
 # automatically load bash completion functions if they were not defined
 autoload -U  +X bashcompinit && bashcompinit
+# automatically load zsh  completion functions if they were not defined
+autoload -Uz +X compinit     && compinit
