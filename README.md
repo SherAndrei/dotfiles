@@ -1,7 +1,6 @@
 # Dotfiles
 
 - [.bashrc](./.bashrc)
-- [.bashrc.bak](./.bashrc.bak)
 - [.config](./.config)
   - [bash.d](./.config/bash.d)
     - [ls.sh](./.config/bash.d/ls.sh)
