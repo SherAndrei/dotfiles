@@ -12,6 +12,7 @@ SH_CONFIG_DIR="${HOME}/.config/sh.d"
 BASH_CONFIG_DIR="${HOME}/.config/bash.d"
 
 # These are sorted alphabetically
+. "$BASH_CONFIG_DIR"/history.sh
 . "$BASH_CONFIG_DIR"/ls.sh
 
 unset BASH_CONFIG_DIR

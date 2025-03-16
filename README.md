@@ -3,6 +3,7 @@
 - [.bashrc](./.bashrc)
 - [.config](./.config)
   - [bash.d](./.config/bash.d)
+    - [history.sh](./.config/bash.d/history.sh)
     - [ls.sh](./.config/bash.d/ls.sh)
   - [Code](./.config/Code)
     - [User](./.config/Code/User)
