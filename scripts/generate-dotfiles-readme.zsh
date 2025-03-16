@@ -14,6 +14,7 @@ exclude_files+=("README.md")
 exclude_dirs+=(".config/zsh.d/pure")
 exclude_dirs+=(".config/zsh.d/zsh-autosuggestions")
 exclude_dirs+=(".config/zsh.d/zsh-syntax-highlighting")
+exclude_dirs+=(".vim/pack/themes/start/vim-code-dark")
 exclude_dirs+=(".git")
 exclude_dirs+=("scripts")
 

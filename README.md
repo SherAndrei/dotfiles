@@ -34,6 +34,10 @@
 - [.gitignore](./.gitignore)
 - [.hushlogin](./.hushlogin)
 - [.tmux.conf](./.tmux.conf)
+- [.vim](./.vim)
+  - [pack](./.vim/pack)
+    - [themes](./.vim/pack/themes)
+      - [start](./.vim/pack/themes/start)
 - [.vimrc](./.vimrc)
 - [.zshrc](./.zshrc)
 ---

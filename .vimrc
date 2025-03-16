@@ -25,6 +25,8 @@ set showmatch
 " enables syntax highlighting by default.
 syntax on
 
+" set colorscheme https://github.com/tomasiser/vim-code-dark
+colorscheme codedark
 
 " add current line number
 set number
