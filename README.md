@@ -48,6 +48,8 @@
             - [fzf.vim](./.vim/pack/apps/start/fzf/plugin/fzf.vim)
     - [themes](./.vim/pack/themes)
       - [start](./.vim/pack/themes/start)
+  - [plugin](./.vim/plugin)
+    - [disable-builtin.vim](./.vim/plugin/disable-builtin.vim)
 - [.vimrc](./.vimrc)
 - [.zshrc](./.zshrc)
 ---
