@@ -49,6 +49,7 @@
     - [themes](./.vim/pack/themes)
       - [start](./.vim/pack/themes/start)
   - [plugin](./.vim/plugin)
+    - [bracketed-paste.vim](./.vim/plugin/bracketed-paste.vim)
     - [disable-builtin.vim](./.vim/plugin/disable-builtin.vim)
 - [.vimrc](./.vimrc)
 - [.zshrc](./.zshrc)
