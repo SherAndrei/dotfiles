@@ -4,6 +4,10 @@
 *.swp
 *.swo
 
+# vim session file from
+# https://github.com/tpope/vim-obsession
+Session.vim
+
 # common non-related to projects stuff
 *.json
 *.log

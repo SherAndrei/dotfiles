@@ -22,3 +22,6 @@
 [submodule ".vim/pack/code/start/vim-easy-align"]
 	path = .vim/pack/code/start/vim-easy-align
 	url = https://github.com/junegunn/vim-easy-align.git
+[submodule ".vim/pack/code/start/vim-obsession"]
+	path = .vim/pack/code/start/vim-obsession
+	url = https://github.com/tpope/vim-obsession.git
