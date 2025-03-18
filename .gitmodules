@@ -19,3 +19,6 @@
 [submodule ".tmux/plugins/tmux-continuum"]
 	path = .tmux/plugins/tmux-continuum
 	url = https://git::@github.com/tmux-plugins/tmux-continuum
+[submodule ".vim/pack/code/start/vim-easy-align"]
+	path = .vim/pack/code/start/vim-easy-align
+	url = https://github.com/junegunn/vim-easy-align.git
