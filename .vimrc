@@ -42,6 +42,10 @@ set cursorline
 set cursorcolumn
 
 
+" Watch for external changes in files
+set autoread
+
+
 " enable auto completion menu after pressing TAB.
 set wildmenu
 
