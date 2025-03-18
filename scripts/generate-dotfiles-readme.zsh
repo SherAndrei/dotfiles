@@ -11,13 +11,6 @@ exclude_files+=(".pre-commit-config.yaml")
 exclude_files+=(".stow-local-ignore")
 exclude_files+=("README.md")
 
-exclude_dirs+=(".config/zsh.d/pure")
-exclude_dirs+=(".config/zsh.d/zsh-autosuggestions")
-exclude_dirs+=(".config/zsh.d/zsh-syntax-highlighting")
-exclude_dirs+=(".vim/pack/themes/start/vim-code-dark")
-exclude_dirs+=(".tmux/plugins/tmux-continuum")
-exclude_dirs+=(".tmux/plugins/tmux-resurrect")
-exclude_dirs+=(".tmux/plugins/tpm")
 exclude_dirs+=(".git")
 exclude_dirs+=("scripts")
 
@@ -29,6 +22,12 @@ for item in "${untracked_files[@]}"; do
   elif [ -f "$item" ]; then
     exclude_files+=("$item")
   fi
+done
+
+submodules=("${(@f)$(git submodule --quiet foreach 'echo ${sm_path}')}")
+
+for submodule in "${submodules[@]}"; do
+	exclude_dirs+=("$submodule")
 done
 
 set -- $(echo ${exclude_files[@]/#/--exclude } ${exclude_dirs[@]/#/--exclude-dir })
