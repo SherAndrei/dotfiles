@@ -35,7 +35,7 @@ set -e
 
 cd $1
 
-__get_preview_renderer() {
+__get_file_preview_renderer() {
 	if command -v bat 2>&1 1>/dev/null; then
 		echo "bat --color=always --decorations=always --style=numbers";
 	elif command -v less 2>&1 1>/dev/null; then
@@ -45,13 +45,26 @@ __get_preview_renderer() {
 	fi
 }
 
-find . -mindepth 1 -path "*/.git" -prune -o \( -type f -o -type d -o -type l \) -print |
-	cut --characters=3- |
-	fzf \
+__get_directory_preview_renderer() {
+	if command -v tree 2>&1 1>/dev/null; then
+		echo "tree -CN";
+	else
+		echo "ls --color=always --almost-all";
+	fi
+}
+
+find . \
+		-mindepth 1 \
+		-path "*/.git" -prune \
+		-o \( -type f -o -type d -o -type l \) \
+		-print \
+	| cut \
+		--characters=3- \
+	| fzf \
 		--layout=reverse \
 		--multi          \
-		--preview="$(__get_preview_renderer) {}" |
-	while read fn; do
+		--preview="([[ -d {} ]] && $(__get_directory_preview_renderer) {}) || ([[ -f {} ]] && $(__get_file_preview_renderer) {}) || echo {}" \
+	| while read fn; do
 		# Output each selected file name with proper quoting.
 		printf "%s%b" ${(q)fn} ${separator}
 	done

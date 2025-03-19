@@ -25,6 +25,7 @@
     - [functions](./.config/sh.d/functions)
       - [is_wsl](./.config/sh.d/functions/is_wsl)
   - [tmux.d](./.config/tmux.d)
+    - [.find-file.zsh.swp](./.config/tmux.d/.find-file.zsh.swp)
     - [find-file.zsh](./.config/tmux.d/find-file.zsh)
   - [zsh.d](./.config/zsh.d)
     - [autosuggestions.zsh](./.config/zsh.d/autosuggestions.zsh)
@@ -55,10 +56,12 @@
   - [plugin](./.vim/plugin)
     - [bracketed-paste.vim](./.vim/plugin/bracketed-paste.vim)
     - [disable-builtin.vim](./.vim/plugin/disable-builtin.vim)
+    - [hard.vim](./.vim/plugin/hard.vim)
     - [search.vim](./.vim/plugin/search.vim)
     - [statusline.vim](./.vim/plugin/statusline.vim)
 - [.vimrc](./.vimrc)
 - [.zshrc](./.zshrc)
+- [Session.vim](./Session.vim)
 ---
 
 ### Installation
