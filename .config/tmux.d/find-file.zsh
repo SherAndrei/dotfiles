@@ -35,9 +35,22 @@ set -e
 
 cd $1
 
+__get_preview_renderer() {
+	if command -v bat 2>&1 1>/dev/null; then
+		echo "bat --color=always --decorations=always --style=numbers";
+	elif command -v less 2>&1 1>/dev/null; then
+		echo "less --LINE-NUMBERS --chop-long-lines";
+	else
+		echo "cat";
+	fi
+}
+
 find . -mindepth 1 -path "*/.git" -prune -o \( -type f -o -type d -o -type l \) -print |
 	cut --characters=3- |
-	fzf --multi --preview="less --LINE-NUMBERS --chop-long-lines {}" |
+	fzf \
+		--layout=reverse \
+		--multi          \
+		--preview="$(__get_preview_renderer) {}" |
 	while read fn; do
 		# Output each selected file name with proper quoting.
 		printf "%s%b" ${(q)fn} ${separator}
