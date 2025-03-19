@@ -61,9 +61,11 @@ find . \
 	| cut \
 		--characters=3- \
 	| fzf \
-		--layout=reverse \
-		--multi          \
+		--layout=reverse   \
+		--multi            \
+		--prompt="Path > " \
 		--preview="([[ -d {} ]] && $(__get_directory_preview_renderer) {}) || ([[ -f {} ]] && $(__get_file_preview_renderer) {}) || echo {}" \
+		--preview-window 'right,70%,border-left' \
 	| while read fn; do
 		# Output each selected file name with proper quoting.
 		printf "%s%b" ${(q)fn} ${separator}

@@ -48,6 +48,7 @@ CMD="${CMD} | cut --delimiter=':' --fields=1-2"
 
 fzf --ansi \
     --disabled \
+    --prompt="Pattern > " \
     --query "${2:-}" \
     --layout=reverse \
     --bind "start:reload:${CMD}" \
