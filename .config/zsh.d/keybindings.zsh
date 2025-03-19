@@ -16,6 +16,21 @@ bindkey -s "^[OR" " git log --oneline -10\n" # F3
 # <C-b> popups build targets in separate tmux popup window.
 # Currently supports
 # 1. fbuild (searches for `fbuild.bff` in ${PWD} and calls to `-showtargets`)
+__select_fbuild_target() {
+	: ${1:?}
+	"${1}" -showtargets -quiet |
+		grep --perl-regexp '\t' |
+		sed --expression='s/\t//' |
+		tr --delete '\r' |
+		fzf-tmux           \
+			-p 30%,30%       \
+			-y 4             \
+			--               \
+			--no-multi       \
+			--no-sort        \
+			--layout=reverse \
+}
+
 __build_targets() {
 	local __appendix_to_lbuffer=""
 
@@ -26,12 +41,7 @@ __build_targets() {
 			tmux display-message "no fbuild.bff found";
 			return;
 		fi;
-		__appendix_to_lbuffer=$(
-			"${__fbuild}" -showtargets -quiet |
-				sed --expression '1d' --expression='s/\t//' |
-				tr --delete '\r' |
-				fzf-tmux -p -- --no-multi --no-sort
-		)
+		__appendix_to_lbuffer=$(__select_fbuild_target "${__fbuild}")
 	fi;
 
 	LBUFFER+="${__appendix_to_lbuffer}"
