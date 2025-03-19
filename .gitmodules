@@ -25,3 +25,6 @@
 [submodule ".vim/pack/code/start/vim-obsession"]
 	path = .vim/pack/code/start/vim-obsession
 	url = https://github.com/tpope/vim-obsession.git
+[submodule ".vim/pack/code/start/file-line"]
+	path = .vim/pack/code/start/file-line
+	url = https://github.com/bogado/file-line.git

@@ -39,15 +39,12 @@ CMD="${CMD} --no-heading"
 # include number of matching line in result
 CMD="${CMD} --line-number"
 
-# include column number also
-CMD="${CMD} --column"
-
 # add placeholder for fzf query
 CMD="${CMD} {q}"
 
 # strip matching pattern, since it is useless of cause of preview
 # source: https://github.com/BurntSushi/ripgrep/discussions/2031#discussioncomment-1514043
-CMD="${CMD} | cut --delimiter=':' --fields=1-3"
+CMD="${CMD} | cut --delimiter=':' --fields=1-2"
 
 fzf --ansi \
     --disabled \
