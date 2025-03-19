@@ -27,6 +27,10 @@ ZSH_CONFIG_DIR="${HOME}/.config/zsh.d"
 . "$ZSH_CONFIG_DIR"/keybindings.zsh
 . "$ZSH_CONFIG_DIR"/prompt.zsh
 
+export PATH="$SH_CONFIG_DIR/scripts:$PATH"
+export PATH="$BASH_CONFIG_DIR/scripts:$PATH"
+export PATH="$ZSH_CONFIG_DIR/scripts:$PATH"
+
 export FPATH="$SH_CONFIG_DIR/functions:$FPATH"
 export FPATH="$BASH_CONFIG_DIR/functions:$FPATH"
 export FPATH="$ZSH_CONFIG_DIR/functions:$FPATH"

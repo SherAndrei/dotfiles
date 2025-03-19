@@ -19,6 +19,9 @@ BASH_CONFIG_DIR="${HOME}/.config/bash.d"
 . "$BASH_CONFIG_DIR"/ls.sh
 . "$BASH_CONFIG_DIR"/prompt.sh
 
+export PATH="$SH_CONFIG_DIR/scripts:$PATH"
+export PATH="$BASH_CONFIG_DIR/scripts:$PATH"
+
 unset BASH_CONFIG_DIR
 unset SH_CONFIG_DIR
 unset CONFIG_DIR
