@@ -39,6 +39,7 @@
 - [.gitconfig](./.gitconfig)
 - [.gitignore](./.gitignore)
 - [.hushlogin](./.hushlogin)
+- [.inputrc](./.inputrc)
 - [.tmux](./.tmux)
 - [.tmux.conf](./.tmux.conf)
   - [plugins](./.tmux/plugins)
