@@ -1,0 +1,60 @@
+#!/usr/bin/env zsh
+
+function usage() {
+	[[ $# -ge 1 ]] && echo >&2 error: "$@"
+	cat >&2 <<EOF
+Usage: ${0##*/} <directory> [<pattern>]
+
+Interactive pattern finder using fzf and ripgrep.
+
+Requirements:
+  - zsh shell
+    - version: zsh 5.9 (x86_64-debian-linux-gnu)
+  - fzf: A command-line fuzzy finder
+    - version: 0.38.0 (debian)
+    - source: https://github.com/junegunn/fzf
+  - ripgrep: A pattern matcher
+    - version: ripgrep 13.0.0
+    - source: https://github.com/BurntSushi/ripgrep
+EOF
+	exit 2
+}
+
+if [ "$#" -lt 1 ]; then
+	usage "missing positional argument <directory>"
+fi
+
+set -e
+
+cd $1
+
+# source:
+# https://github.com/junegunn/fzf/blob/923c3a814de39ff906d675834af634252b3d2b3f/ADVANCED.md#switching-between-ripgrep-mode-and-fzf-mode-using-a-single-key-binding
+
+CMD="rg"
+
+# do not group matches, use grep-like output
+CMD="${CMD} --no-heading"
+
+# include number of matching line in result
+CMD="${CMD} --line-number"
+
+# include column number also
+CMD="${CMD} --column"
+
+# add placeholder for fzf query
+CMD="${CMD} {q}"
+
+# strip matching pattern, since it is useless of cause of preview
+# source: https://github.com/BurntSushi/ripgrep/discussions/2031#discussioncomment-1514043
+CMD="${CMD} | cut --delimiter=':' --fields=1-3"
+
+fzf --ansi \
+    --disabled \
+    --query "${2:-}" \
+    --layout=reverse \
+    --bind "start:reload:${CMD}" \
+    --bind "change:reload:sleep 0.4; ${CMD} || true" \
+    --delimiter : \
+    --preview 'bat --style=numbers --color=always {1} --highlight-line {2}' \
+    --preview-window 'right,70%,border-left,+{2}+3/3'
