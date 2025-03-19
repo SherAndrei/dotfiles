@@ -1,8 +1,9 @@
 
 # Ignore vim files:
+# Souce: https://github.com/tpope/dotfiles/blob/30b0609c6bdc38eb607530d6a1b603dbfdc8a8ef/.cvsignore
 *~
-*.swp
-*.swo
+.*.sw?
+.sw?
 
 # vim session file from
 # https://github.com/tpope/vim-obsession
