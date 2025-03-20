@@ -53,19 +53,39 @@ __get_directory_preview_renderer() {
 	fi
 }
 
-find . \
+MRU="/tmp/ff-mru-cache$(echo "$1" | tr ' ~./\\:' '_')"
+
+mru_with_find() {
+	if [ -f "$MRU" ]; then
+		tail --lines=10 "$MRU" | uniq | tac;
+	fi
+	if command -v rg 2>&1 >/dev/null; then
+		rg \
+			--glob=!.git/ \
+			--hidden \
+			--files \
+			--color=never \
+			--sort=none;
+		return;
+	fi
+	find . \
 		-mindepth 1 \
 		-path "*/.git" -prune \
 		-o \( -type f -o -type d -o -type l \) \
 		-print \
 	| cut \
-		--characters=3- \
+		--characters=3-
+}
+
+mru_with_find \
 	| fzf \
+		--no-sort \
 		--layout=reverse   \
 		--multi            \
 		--prompt="Path > " \
 		--preview="([[ -d {} ]] && $(__get_directory_preview_renderer) {}) || ([[ -f {} ]] && $(__get_file_preview_renderer) {}) || echo {}" \
 		--preview-window 'right,70%,border-left' \
+	| tee --append "$MRU" \
 	| while read fn; do
 		# Output each selected file name with proper quoting.
 		printf "%s%b" ${(q)fn} ${separator}
