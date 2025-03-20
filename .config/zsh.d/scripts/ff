@@ -80,6 +80,7 @@ mru_with_find() {
 mru_with_find \
 	| fzf \
 		--no-sort \
+		--tiebreak=end     \
 		--layout=reverse   \
 		--multi            \
 		--prompt="Path > " \
