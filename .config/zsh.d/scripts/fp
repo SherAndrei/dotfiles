@@ -33,6 +33,17 @@ cd $1
 
 CMD="rg"
 
+# seach in directories and files, starting with dot
+CMD="${CMD} --hidden"
+# ... except git
+CMD="${CMD} --glob=!.git/"
+
+# don't bother to color anything, cause of preview
+CMD="${CMD} --color=never"
+
+# explicitly tell to not sort anything
+CMD="${CMD} --sort=none"
+
 # do not group matches, use grep-like output
 CMD="${CMD} --no-heading"
 
@@ -46,13 +57,12 @@ CMD="${CMD} {q}"
 # source: https://github.com/BurntSushi/ripgrep/discussions/2031#discussioncomment-1514043
 CMD="${CMD} | cut --delimiter=':' --fields=1-2"
 
-fzf --ansi \
+fzf \
     --disabled \
     --prompt="Pattern > " \
     --query "${2:-}" \
     --layout=reverse \
-    --bind "start:reload:${CMD}" \
-    --bind "change:reload:sleep 0.4; ${CMD} || true" \
+    --bind "change:reload:sleep 0.4; [ -z {q} ] || ${CMD} || true" \
     --delimiter : \
-    --preview 'bat --style=numbers --color=always {1} --highlight-line {2}' \
+    --preview '[ -z {2} ] || bat --style=numbers --color=always {1} --highlight-line {2}' \
     --preview-window 'right,70%,border-left,+{2}+3/3'
