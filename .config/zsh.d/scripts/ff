@@ -57,7 +57,16 @@ MRU="/tmp/ff-mru-cache$(echo "$1" | tr ' ~./\\:' '_')"
 
 mru_with_find() {
 	if [ -f "$MRU" ]; then
-		tail --lines=10 "$MRU" | uniq | tac;
+		# remove any duplicates
+		# double reverse here is required for
+		# uniq, as it leaves only first occurence
+		cat "$MRU" \
+			| nl \
+			| sort --key=2 --reverse \
+			| uniq --skip-fields=1 \
+			| sort --key=1 --numeric --reverse \
+			| awk '{ print $2 }';
+		echo '-----------------------------------'
 	fi
 	if command -v rg 2>&1 >/dev/null; then
 		rg \
@@ -80,6 +89,7 @@ mru_with_find() {
 mru_with_find \
 	| fzf \
 		--no-sort \
+		--scheme=path      \
 		--tiebreak=end     \
 		--layout=reverse   \
 		--multi            \
