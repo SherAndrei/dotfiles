@@ -1,55 +1,6 @@
 
 # source: see zshzle(1) man
 
-# set F1 to go to parent dir
-__cddotdot() { cd .. ; pwd ; zle reset-prompt }
-# create user defined widget to be able to call
-# 'zle' inside builtin bindkey
-zle -N __cddotdot
-bindkey "^[OP" __cddotdot # F1
-
-# '-s' here binds key to a string command
-bindkey -s "^[OQ" " git status\n" # F2
-bindkey -s "^[OR" " git log --oneline -10\n" # F3
-
-
-# <C-b> popups build targets in separate tmux popup window.
-# Currently supports
-# 1. fbuild (searches for `fbuild.bff` in ${PWD} and calls to `-showtargets`)
-__select_fbuild_target() {
-	: ${1:?}
-	"${1}" -showtargets -quiet |
-		grep --perl-regexp '\t' |
-		sed --expression='s/\t//' |
-		tr --delete '\r' |
-		fzf-tmux           \
-			-p 30%,30%       \
-			-y 4             \
-			--               \
-			--no-multi       \
-			--no-sort        \
-			--layout=reverse \
-}
-
-__build_targets() {
-	local __appendix_to_lbuffer=""
-
-	local __fbuild=${FBUILD:-fbuild}
-	if command -v "${__fbuild}" 2>&1 >/dev/null;
-	then
-		if [ ! -e "${PWD}/fbuild.bff" ]; then
-			tmux display-message "no fbuild.bff found";
-			return;
-		fi;
-		__appendix_to_lbuffer=$(__select_fbuild_target "${__fbuild}")
-	fi;
-
-	LBUFFER+="${__appendix_to_lbuffer}"
-}
-
-zle -N __build_targets
-bindkey "^b" __build_targets
-
 # source: https://github.com/ohmyzsh/ohmyzsh/blob/master/lib/key-bindings.zsh
 
 # http://zsh.sourceforge.net/Doc/Release/Zsh-Line-Editor.html
@@ -173,3 +124,52 @@ bindkey ' ' magic-space                               # [Space] - don't do histo
 autoload -U edit-command-line
 zle -N edit-command-line
 bindkey '\C-x\C-e' edit-command-line
+
+# set F1 to go to parent dir
+__cddotdot() { cd .. ; pwd ; zle reset-prompt }
+# create user defined widget to be able to call
+# 'zle' inside builtin bindkey
+zle -N __cddotdot
+bindkey "^[OP" __cddotdot # F1
+
+# '-s' here binds key to a string command
+bindkey -s "^[OQ" " git status\n" # F2
+bindkey -s "^[OR" " git log --oneline -10\n" # F3
+
+
+# <C-b> popups build targets in separate tmux popup window.
+# Currently supports
+# 1. fbuild (searches for `fbuild.bff` in ${PWD} and calls to `-showtargets`)
+__select_fbuild_target() {
+	: ${1:?}
+	"${1}" -showtargets -quiet |
+		grep --perl-regexp '\t' |
+		sed --expression='s/\t//' |
+		tr --delete '\r' |
+		fzf-tmux           \
+			-p 30%,30%       \
+			-y 4             \
+			--               \
+			--no-multi       \
+			--no-sort        \
+			--layout=reverse \
+}
+
+__build_targets() {
+	local __appendix_to_lbuffer=""
+
+	local __fbuild=${FBUILD:-fbuild}
+	if command -v "${__fbuild}" 2>&1 >/dev/null;
+	then
+		if [ ! -e "${PWD}/fbuild.bff" ]; then
+			tmux display-message "no fbuild.bff found";
+			return;
+		fi;
+		__appendix_to_lbuffer=$(__select_fbuild_target "${__fbuild}")
+	fi;
+
+	LBUFFER+="${__appendix_to_lbuffer}"
+}
+
+zle -N __build_targets
+bindkey "^b" __build_targets
