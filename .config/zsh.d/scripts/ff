@@ -86,11 +86,26 @@ mru_with_find() {
 		--characters=3-
 }
 
+# -U: alias  expansion  is  suppressed  when  the function is loaded.
+# -z: mark the function to be autoloaded using the zsh style
+autoload -Uz is-at-least
+fzf_version="${${(As: :)$(fzf --version 2>/dev/null)}[1]}"
+
+fzf_options=()
+
+# good for searching filenames
+# source: https://github.com/junegunn/fzf/issues/191#issuecomment-93650839
+fzf_options+=( --tiebreak=end )
+
+# option --scheme added in 0.33
+# source: https://github.com/junegunn/fzf/blob/62238620a50566a1941dbb250f7b9ffc3174feae/CHANGELOG.md#0330
+if is-at-least 0.33 "$fzf_version"; then
+	fzf_options+=( --scheme=path );
+fi
+
 mru_with_find \
 	| fzf \
-		--no-sort \
-		--scheme=path      \
-		--tiebreak=end     \
+		"${fzf_options[@]}" \
 		--layout=reverse   \
 		--multi            \
 		--prompt="Path > " \
