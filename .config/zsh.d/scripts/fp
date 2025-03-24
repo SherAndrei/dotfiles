@@ -31,31 +31,72 @@ cd $1
 # source:
 # https://github.com/junegunn/fzf/blob/923c3a814de39ff906d675834af634252b3d2b3f/ADVANCED.md#switching-between-ripgrep-mode-and-fzf-mode-using-a-single-key-binding
 
-CMD="rg"
+call_ripgrep() {
+	local CMD="rg"
 
-# seach in directories and files, starting with dot
-CMD="${CMD} --hidden"
-# ... except git
-CMD="${CMD} --glob=!.git/"
+	# seach in directories and files, starting with dot
+	CMD="${CMD} --hidden"
+	# ... except git
+	CMD="${CMD} --glob=!.git/"
 
-# don't bother to color anything, cause of preview
-CMD="${CMD} --color=never"
+	# don't bother to color anything, cause of preview
+	CMD="${CMD} --color=never"
 
-# explicitly tell to not sort anything
-CMD="${CMD} --sort=none"
+	# explicitly tell to not sort anything
+	CMD="${CMD} --sort=none"
 
-# do not group matches, use grep-like output
-CMD="${CMD} --no-heading"
+	# do not group matches, use grep-like output
+	CMD="${CMD} --no-heading"
 
-# include number of matching line in result
-CMD="${CMD} --line-number"
+	# include number of matching line in result
+	CMD="${CMD} --line-number"
 
-# add placeholder for fzf query
-CMD="${CMD} {q}"
+	# add placeholder for fzf query
+	CMD="${CMD} {q}"
 
-# strip matching pattern, since it is useless of cause of preview
-# source: https://github.com/BurntSushi/ripgrep/discussions/2031#discussioncomment-1514043
-CMD="${CMD} | cut --delimiter=':' --fields=1-2"
+	# strip matching pattern, since it is useless of cause of preview
+	# source: https://github.com/BurntSushi/ripgrep/discussions/2031#discussioncomment-1514043
+	CMD="${CMD} | cut --delimiter=':' --fields=1-2"
+
+	echo "${CMD}"
+}
+
+call_grep() {
+	local CMD="grep"
+
+	# don't bother to color anything, cause of preview
+	CMD="${CMD} --color=never"
+
+	# traverse current directory recursively
+	CMD="${CMD} --recursive"
+
+	# process a binary file as if it did not contain matching data;
+	CMD="${CMD} --binary-files=without-match"
+
+	# exclude .git dir
+	CMD="${CMD} --exclude-dir=.git"
+
+	# include number of matching line in result
+	CMD="${CMD} --line-number"
+
+	# add placeholder for fzf query
+	CMD="${CMD} {q}"
+
+	# strip matching pattern, since it is useless of cause of preview
+	# source: https://stackoverflow.com/a/6958981/15751315
+	CMD="${CMD} | cut --delimiter=':' --fields=1-2"
+
+	echo "${CMD}"
+}
+
+CMD=""
+if command -v rg 2>&1 1>/dev/null; then
+	CMD="$(call_ripgrep)"
+elif command -v grep 2>&1 1>/dev/null; then
+	CMD="$(call_grep)"
+fi
+
+[ -n "${CMD}" ] || exit 1
 
 fzf \
     --disabled \
