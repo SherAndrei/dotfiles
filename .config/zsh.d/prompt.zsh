@@ -8,6 +8,7 @@ fpath+=( "$ZSH_CONFIG_DIR"/pure )
 PURE_PROMPT_SYMBOL='»'
 PURE_GIT_DOWN_ARROW='↓'
 PURE_GIT_UP_ARROW='↑'
+PURE_PROMPT_VICMD_SYMBOL='«'
 
 # xterm-256color system blue (bold blue as in `ls` directory color '\e[01;34m')
 # source: https://www.ditig.com/256-colors-cheat-sheet
