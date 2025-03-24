@@ -98,6 +98,17 @@ fi
 
 [ -n "${CMD}" ] || exit 1
 
+__get_file_preview_renderer() {
+	if command -v bat 2>&1 1>/dev/null; then
+		echo "bat --color=always --decorations=always --style=numbers {1} --highlight-line {2}";
+	else
+		# get meaningful preview:
+		# 1. highlight query with grep, match everything else without color
+		# 1. add number lines with nl
+		echo "grep --color=always --regexp '{q}' --regexp '^' {1} | nl";
+	fi
+}
+
 fzf \
     --disabled \
     --prompt="Pattern > " \
@@ -105,5 +116,5 @@ fzf \
     --layout=reverse \
     --bind "change:reload:sleep 0.4; [ -z {q} ] || ${CMD} || true" \
     --delimiter : \
-    --preview '[ -z {2} ] || bat --style=numbers --color=always {1} --highlight-line {2}' \
+    --preview "[ -z {2} ] || $(__get_file_preview_renderer)" \
     --preview-window 'right,70%,border-left,+{2}+3/3'
