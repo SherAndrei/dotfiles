@@ -1,0 +1,21 @@
+#! /bin/sh
+
+# Usage:
+#  clip2 > tmp.txt
+#
+# Paste from the windows clipboard to the terminal.
+#
+# Source: https://superuser.com/a/1840676/1829792
+#
+# Warning: powershell.exe uses legacy system locale
+#  by default, via its OEM code page, that
+#  determines the default encoding, thus making this script
+#  useless for non-ASCII letters.
+#
+# See also:
+# * More about powershell default behaviour:
+#   * https://stackoverflow.com/a/49481797/15751315
+#   * https://stackoverflow.com/a/57134096/15751315
+# * About chcp: https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/chcp
+# * About code-page identifiers: https://learn.microsoft.com/en-us/windows/win32/intl/code-page-identifiers
+powershell.exe -noprofile -command Get-Clipboard
