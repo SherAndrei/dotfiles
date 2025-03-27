@@ -14,3 +14,7 @@ set hlsearch
 
 " Show upper and lower line on match
 set scrolloff=2
+
+" Disable searches wrap around the end of file
+" to be able to clearly see the last entry
+set nowrapscan
