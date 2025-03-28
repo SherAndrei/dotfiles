@@ -71,7 +71,7 @@
 Install using [GNU Stow](https://www.gnu.org/software/stow/):
 1. Clone repo into home directory
   ```bash
-  git clone https://github.com/SherAndrei/dotfiles.git ~/.dotfiles
+  git clone --recurse-submodules --jobs=8 https://github.com/SherAndrei/dotfiles.git ~/.dotfiles
   ```
 2. Run `stow` from repo
   ```bash
