@@ -49,6 +49,17 @@ Install using [GNU Stow](https://www.gnu.org/software/stow/):
   stow .
   cd -
   ```
+3. (optionally) Provide code completion and syntax highlighting for C-family languages, [source](https://github.com/ycm-core/YouCompleteMe/tree/b6e8c64d96b02d60b3751d6a51af7dc958054f8f?tab=readme-ov-file#linux-64-bit)
+  ```bash
+  sudo apt install build-essential cmake vim-nox python3-dev
+  cd ~/.vim/pack/code/start/YouCompleteMe
+  python3 install.py --clangd-completer
+  ```
+  Tested with:
+  * Python 3.10.12
+  * cmake version 3.22.1
+  * VIM - Vi IMproved 8.2 (2019 Dec 12, compiled Feb 03 2025 11:54:38)
+  * gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0
 
 ---
 
