@@ -74,3 +74,6 @@ set list
 " highlight whitespaces at the end of lines
 highlight ExtraWhitespace ctermbg=green ctermfg=blue
 match ExtraWhitespace /\s\+$/
+
+" use default mapping for https://github.com/bkad/CamelCaseMotion
+let g:camelcasemotion_key = '<leader>'
