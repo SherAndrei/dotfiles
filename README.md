@@ -2,14 +2,14 @@
 
 - [.bashrc](./.bashrc)
 - [.config](./.config)
-  - [Code](./.config/Code)
-    - [User](./.config/Code/User)
-      - [settings.json](./.config/Code/User/settings.json)
   - [bash.d](./.config/bash.d)
     - [completion.sh](./.config/bash.d/completion.sh)
     - [history.sh](./.config/bash.d/history.sh)
     - [ls.sh](./.config/bash.d/ls.sh)
     - [prompt.sh](./.config/bash.d/prompt.sh)
+  - [Code](./.config/Code)
+    - [User](./.config/Code/User)
+      - [settings.json](./.config/Code/User/settings.json)
   - [fzf.d](./.config/fzf.d)
     - [options.sh](./.config/fzf.d/options.sh)
   - [gcc.d](./.config/gcc.d)
@@ -19,8 +19,8 @@
   - [pypoetry](./.config/pypoetry)
     - [config.toml](./.config/pypoetry/config.toml)
   - [rg.d](./.config/rg.d)
-    - [.ripgreprc](./.config/rg.d/.ripgreprc)
     - [options.sh](./.config/rg.d/options.sh)
+    - [.ripgreprc](./.config/rg.d/.ripgreprc)
   - [sh.d](./.config/sh.d)
     - [functions](./.config/sh.d/functions)
       - [is_wsl](./.config/sh.d/functions/is_wsl)
@@ -45,6 +45,7 @@
 - [.gitignore](./.gitignore)
 - [.hushlogin](./.hushlogin)
 - [.inputrc](./.inputrc)
+- [Session.vim](./Session.vim)
 - [.tmux](./.tmux)
 - [.tmux.conf](./.tmux.conf)
   - [plugins](./.tmux/plugins)
@@ -63,7 +64,6 @@
     - [ycmrc.vim](./.vim/plugin/ycmrc.vim)
 - [.vimrc](./.vimrc)
 - [.zshrc](./.zshrc)
-- [Session.vim](./Session.vim)
 ---
 
 ### Installation

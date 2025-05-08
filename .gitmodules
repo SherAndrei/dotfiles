@@ -31,3 +31,6 @@
 [submodule ".vim/pack/code/start/YouCompleteMe"]
 	path = .vim/pack/code/start/YouCompleteMe
 	url = https://github.com/ycm-core/YouCompleteMe.git
+[submodule ".vim/pack/code/start/vim-surround"]
+	path = .vim/pack/code/start/vim-surround
+	url = https://github.com/tpope/vim-surround.git
