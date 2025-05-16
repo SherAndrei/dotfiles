@@ -4,6 +4,9 @@
 	autocrlf = false
 	eol = lf
 	tabwidth = 2
+	# By default, windows git will print non-ASCII file names in quoted octal notation, i.e. "\nnn\nnn...".
+	# Source: https://github.com/msysgit/msysgit/wiki/Git-for-Windows-Unicode-Support
+	quotepath = off
 [init]
 	defaultBranch = master
 [diff]
