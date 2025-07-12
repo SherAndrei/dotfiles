@@ -43,3 +43,6 @@
 [submodule ".vim/pack/code/start/traces.vim"]
 	path = .vim/pack/code/start/traces.vim
 	url = https://github.com/markonm/traces.vim.git
+[submodule ".tmux/plugins/tmux-yank"]
+	path = .tmux/plugins/tmux-yank
+	url = https://github.com/tmux-plugins/tmux-yank
