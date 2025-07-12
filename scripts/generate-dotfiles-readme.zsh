@@ -9,6 +9,7 @@ exclude_dirs=()
 exclude_files+=(".gitmodules")
 exclude_files+=(".pre-commit-config.yaml")
 exclude_files+=(".stow-local-ignore")
+exclude_files+=("Session.vim")
 exclude_files+=("README.md")
 
 exclude_dirs+=(".git")

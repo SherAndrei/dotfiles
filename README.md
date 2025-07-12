@@ -45,7 +45,6 @@
 - [.gitignore](./.gitignore)
 - [.hushlogin](./.hushlogin)
 - [.inputrc](./.inputrc)
-- [Session.vim](./Session.vim)
 - [.tmux](./.tmux)
 - [.tmux.conf](./.tmux.conf)
   - [plugins](./.tmux/plugins)
