@@ -46,3 +46,6 @@
 [submodule ".tmux/plugins/tmux-yank"]
 	path = .tmux/plugins/tmux-yank
 	url = https://github.com/tmux-plugins/tmux-yank
+[submodule ".vim/pack/code/start/vim_current_word"]
+	path = .vim/pack/code/start/vim_current_word
+	url = https://github.com/dominikduda/vim_current_word
