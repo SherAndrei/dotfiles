@@ -40,3 +40,6 @@
 [submodule ".vim/pack/code/start/vim-sneak"]
 	path = .vim/pack/code/start/vim-sneak
 	url = https://github.com/justinmk/vim-sneak.git
+[submodule ".vim/pack/code/start/traces.vim"]
+	path = .vim/pack/code/start/traces.vim
+	url = https://github.com/markonm/traces.vim.git
