@@ -49,3 +49,6 @@
 [submodule ".vim/pack/code/start/vim_current_word"]
 	path = .vim/pack/code/start/vim_current_word
 	url = https://github.com/dominikduda/vim_current_word
+[submodule ".tmux/plugins/tmux-copycat"]
+	path = .tmux/plugins/tmux-copycat
+	url = https://github.com/tmux-plugins/tmux-copycat.git
