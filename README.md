@@ -1,6 +1,7 @@
 # Dotfiles
 
 - [.bashrc](./.bashrc)
+- [Brewfile](./Brewfile)
 - [.config](./.config)
   - [bash.d](./.config/bash.d)
     - [completion.sh](./.config/bash.d/completion.sh)
@@ -14,6 +15,8 @@
     - [options.sh](./.config/fzf.d/options.sh)
   - [gcc.d](./.config/gcc.d)
     - [colors.sh](./.config/gcc.d/colors.sh)
+  - [homebrew.d](./.config/homebrew.d)
+    - [env.sh](./.config/homebrew.d/env.sh)
   - [less.d](./.config/less.d)
     - [options.sh](./.config/less.d/options.sh)
   - [pypoetry](./.config/pypoetry)
@@ -63,12 +66,23 @@
     - [ycmrc.vim](./.vim/plugin/ycmrc.vim)
 - [.vimrc](./.vimrc)
 - [.zprofile](./.zprofile)
+- [.zshenv](./.zshenv)
 - [.zshrc](./.zshrc)
 ---
 
 ### Installation
 
-Install using [GNU Stow](https://www.gnu.org/software/stow/):
+Install utilties using [Homebrew](https://brew.sh/):
+1. Run Homebrew installation script from official site
+  ```bash
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  ```
+2. Install applications listed in `Brewfile`
+  ```zsh
+  brew bundle
+  ```
+
+Generate symlinks to configuration using [GNU Stow](https://www.gnu.org/software/stow/):
 1. Clone repo into home directory
   ```bash
   git clone --recurse-submodules --jobs=8 https://github.com/SherAndrei/dotfiles.git ~/.dotfiles
