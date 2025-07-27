@@ -2,7 +2,6 @@
 CONFIG_DIR="${HOME}/.config"
 
 # These are sorted alphabetically
-. "${CONFIG_DIR}/fzf.d/options.sh"
 . "${CONFIG_DIR}/gcc.d/colors.sh"
 . "${CONFIG_DIR}/less.d/options.sh"
 . "${CONFIG_DIR}/rg.d/options.sh"

@@ -12,7 +12,7 @@
     - [User](./.config/Code/User)
       - [settings.json](./.config/Code/User/settings.json)
   - [fzf.d](./.config/fzf.d)
-    - [options.sh](./.config/fzf.d/options.sh)
+    - [env.sh](./.config/fzf.d/env.sh)
   - [gcc.d](./.config/gcc.d)
     - [colors.sh](./.config/gcc.d/colors.sh)
   - [homebrew.d](./.config/homebrew.d)

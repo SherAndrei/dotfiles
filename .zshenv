@@ -4,6 +4,7 @@
 CONFIG_DIR="${HOME}/.config"
 
 # These are sorted alphabetically
+. "${CONFIG_DIR}/fzf.d/env.sh"
 . "${CONFIG_DIR}/homebrew.d/env.sh"
 
 unset CONFIG_DIR
