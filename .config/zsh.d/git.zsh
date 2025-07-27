@@ -147,6 +147,7 @@ function ggfl() {
 }
 
 alias gpv='git push --verbose'
+alias gpvrs='git push --verbose --recurse-submodules=on-demand'
 alias gpod='git push origin --delete'
 alias ggpush='git push origin "$(git_current_branch)"'
 
