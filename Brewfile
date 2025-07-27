@@ -2,7 +2,6 @@
 brew "bat"
 brew "fzf"
 brew "ripgrep"
-brew "tmux"
 brew "tree"
 brew "vim"
 brew "zoxide"
