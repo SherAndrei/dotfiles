@@ -19,4 +19,4 @@ then
 	executable="${executable}.exe"
 fi
 
-"${executable}" "${*}"
+"${executable}" ${*}
