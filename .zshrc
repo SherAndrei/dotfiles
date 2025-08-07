@@ -13,6 +13,8 @@ SH_CONFIG_DIR="${HOME}/.config/sh.d"
 BASH_CONFIG_DIR="${HOME}/.config/bash.d"
 
 # These are sorted alphabetically
+. "$BASH_CONFIG_DIR"/grep.sh
+. "$BASH_CONFIG_DIR"/less.sh
 . "$BASH_CONFIG_DIR"/ls.sh
 
 ZSH_CONFIG_DIR="${HOME}/.config/zsh.d"

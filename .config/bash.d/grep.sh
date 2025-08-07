@@ -1,0 +1,1 @@
+alias G=grep
