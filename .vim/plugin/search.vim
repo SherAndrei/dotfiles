@@ -11,6 +11,8 @@ set smartcase
 
 " Use highlighting when doing a search.
 set hlsearch
+" Clear highlighing in normal mode by pressing Esc
+nnoremap <Esc> :nohlsearch<CR>
 
 " Show upper and lower line on match
 set scrolloff=2
