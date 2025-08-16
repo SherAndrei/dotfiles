@@ -15,8 +15,7 @@ set hlsearch
 nnoremap <Esc> :nohlsearch<CR>
 
 " Show upper and lower line on match
-set scrolloff=2
+set scrolloff=4
 
-" Disable searches wrap around the end of file
-" to be able to clearly see the last entry
-set nowrapscan
+" Enable searches wrap around the end of file
+set wrapscan
