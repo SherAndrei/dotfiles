@@ -19,9 +19,6 @@ filetype indent on
 " source: /etc/vim/vimrc on debian 12 (bookworm)
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g'\"" | endif
 
-" When a bracket is inserted, briefly jump to the matching one.
-set showmatch
-
 " enables syntax highlighting by default.
 syntax on
 
