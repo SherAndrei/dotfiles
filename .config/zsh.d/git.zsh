@@ -83,10 +83,15 @@ function gbds() {
 
 alias gbgd='LANG=C git branch --no-color -vv | grep ": gone\]" | cut -c 3- | awk '"'"'{print $1}'"'"' | xargs git branch -d'
 alias gbgD='LANG=C git branch --no-color -vv | grep ": gone\]" | cut -c 3- | awk '"'"'{print $1}'"'"' | xargs git branch -D'
-alias gco='git checkout'
-alias gcb='git checkout -b'
-alias gcB='git checkout -B'
+
+alias gco='git  checkout'
+alias gcb='git  checkout -b'
+alias gcB='git  checkout -B'
 alias gcom='git checkout origin/$(git_main_branch)'
+
+alias gcp='git  cherry-pick'
+alias gcpc='git cherry-pick --continue'
+alias gcpa='git cherry-pick --abort'
 
 alias gcam='git  commit           --all --message'
 alias gcm='git   commit                 --message'
@@ -133,22 +138,23 @@ function _git_log_prettily(){
 }
 
 alias glp='_git_log_prettily'
-alias glg='git log --stat'
-alias glgp='git log --stat --patch'
+alias glg='git   log --stat'
+alias glgp='git  log --stat --patch'
+
 alias gignored='git ls-files -v | grep "^[[:lower:]]"'
-alias gfg='git ls-files | grep'
+alias gfg='git      ls-files | grep'
 
 alias gpf!='git push --force'
-alias gpf='git push --force-with-lease'
+alias gpf='git  push --force-with-lease'
 
 function ggfl() {
   [[ "$#" != 1 ]] && local b="$(git_current_branch)"
   git push --force-with-lease origin "${b:=$1}"
 }
 
-alias gpv='git push --verbose'
-alias gpvrs='git push --verbose --recurse-submodules=on-demand'
-alias gpod='git push origin --delete'
+alias gpv='git    push --verbose'
+alias gpvrs='git  push --verbose --recurse-submodules=on-demand'
+alias gpod='git   push origin --delete'
 alias ggpush='git push origin "$(git_current_branch)"'
 
 function ggp() {
@@ -160,27 +166,35 @@ function ggp() {
   fi
 }
 
-alias gr='git rebase'
-alias gra='git rebase --abort'
-alias grc='git rebase --continue'
-alias gri='git rebase --interactive'
+alias gr='git   rebase'
+alias gra='git  rebase --abort'
+alias grc='git  rebase --continue'
+alias gri='git  rebase --interactive'
 alias grim='git rebase --interactive origin/$(git_main_branch)'
-alias grs='git rebase --skip'
+alias grs='git  rebase --skip'
 alias grom='git rebase origin/$(git_main_branch)'
+
 alias gunwip='git rev-list --max-count=1 --format="%s" HEAD | grep -q "\--wip--" && git reset HEAD~1'
-alias gst='git stash --all'
+
+alias gst='git  stash --all'
 alias gstp='git stash pop'
-alias gs='git status'
+
+alias gs='git  status'
 alias gss='git status --short'
-alias gsu='git submodule update --init --recursive'
+
+alias gsu='git  submodule update --init --recursive'
 alias gsus='git submodule summary'
-alias gignore='git update-index --assume-unchanged'
+
+alias gignore='git   update-index --assume-unchanged'
 alias gunignore='git update-index --no-assume-unchanged'
+
 alias gwch='git whatchanged -p --abbrev-commit --pretty=medium'
-alias gwt='git worktree'
-alias gwta='git worktree add'
+
+alias gwt='git   worktree'
+alias gwta='git  worktree add'
 alias gwtls='git worktree list'
 alias gwtmv='git worktree move'
 alias gwtrm='git worktree remove'
+
 alias gstu='gsta --include-untracked'
 alias gtl='gtl(){ git tag --sort=-v:refname -n --list "${1}*" }; noglob gtl'
