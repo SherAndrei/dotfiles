@@ -17,5 +17,11 @@ $include /etc/inputrc
 "\e[5~": history-search-backward
 "\e[6~": history-search-forward
 
+# Insert each paste into the editing buffer as a
+# single string of characters, instead of treating
+# each character as if it had been read from the keyboard
+# source: https://tiswww.case.edu/php/chet/readline/rluserman.html#index-enable_002dbracketed_002dpaste
+set enable-bracketed-paste on
+
 # never ring a bell on tab-completion
 set bell-style none
