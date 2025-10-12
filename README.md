@@ -42,7 +42,6 @@
     - [prompt.zsh](./.config/zsh.d/prompt.zsh)
     - [scripts](./.config/zsh.d/scripts)
       - [ff](./.config/zsh.d/scripts/ff)
-      - [.ff.swp](./.config/zsh.d/scripts/.ff.swp)
       - [fp](./.config/zsh.d/scripts/fp)
       - [rr](./.config/zsh.d/scripts/rr)
 - [.editorconfig](./.editorconfig)
