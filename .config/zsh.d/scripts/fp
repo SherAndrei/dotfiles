@@ -135,10 +135,14 @@ if is-at-least 0.45 "$fzf_version"; then
 fi
 
 fzf \
-    --disabled \
-    "${fzf_options[@]}" \
-    --query "${2:-}" \
-    --layout=reverse \
-    --delimiter : \
-    --preview "[ -z {2} ] || $(__get_file_preview_renderer)" \
-    --preview-window 'right,70%,border-left,+{2}+3/3'
+		--disabled \
+		"${fzf_options[@]}" \
+		--query "${2:-}" \
+		--layout=reverse \
+		--delimiter : \
+		--preview "[ -z {2} ] || $(__get_file_preview_renderer)" \
+		--preview-window 'right,70%,border-left,+{2}+3/3' \
+	| while read fn; do
+		# Output each selected file name with proper quoting.
+		printf "%s%b" ${(q)fn} ${separator}
+	done

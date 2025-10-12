@@ -1,5 +1,6 @@
 # these are sorted lexicographically
 brew "bat"
+brew "ctags-exuberant"
 brew "fzf"
 brew "ripgrep"
 brew "stow"
