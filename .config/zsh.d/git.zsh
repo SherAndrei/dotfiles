@@ -12,6 +12,16 @@ function git() {
   fi
 }
 
+function git-lfs() {
+  autoload -U is_wsl
+
+  if is_wsl && [[ "${PWD}" =~ "/mnt/\w/" ]]; then
+    git-lfs.exe "$@"
+  else
+    command git-lfs "$@"
+  fi
+}
+
 # This script is based on
 # https://github.com/ohmyzsh/ohmyzsh/blob/6e7ac0544e71c7b777746cb50f70de68c6495b86/plugins/git/git.plugin.zsh
 
