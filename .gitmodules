@@ -52,3 +52,6 @@
 [submodule ".tmux/plugins/tmux-copycat"]
 	path = .tmux/plugins/tmux-copycat
 	url = https://github.com/tmux-plugins/tmux-copycat.git
+[submodule ".vim/pack/code/start/a.vim"]
+	path = .vim/pack/code/start/a.vim
+	url = https://github.com/vim-scripts/a.vim.git
