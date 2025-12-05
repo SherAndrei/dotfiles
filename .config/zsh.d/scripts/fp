@@ -56,7 +56,7 @@ call_ripgrep() {
 
 	# strip matching pattern, since it is useless of cause of preview
 	# source: https://github.com/BurntSushi/ripgrep/discussions/2031#discussioncomment-1514043
-	CMD="${CMD} | cut --delimiter=':' --fields=1-2"
+	CMD="${CMD} | stdbuf -oL cut --delimiter=':' --fields=1-2"
 
 	echo "${CMD}"
 }
@@ -84,7 +84,7 @@ call_grep() {
 
 	# strip matching pattern, since it is useless of cause of preview
 	# source: https://stackoverflow.com/a/6958981/15751315
-	CMD="${CMD} | cut --delimiter=':' --fields=1-2"
+	CMD="${CMD} | stdbuf -oL cut --delimiter=':' --fields=1-2"
 
 	echo "${CMD}"
 }
