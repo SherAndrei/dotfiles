@@ -115,24 +115,30 @@ autoload -Uz is-at-least
 fzf_version="${${(As: :)$(fzf --version 2>/dev/null)}[1]}"
 
 fzf_options=()
+fzf_header=""
 
 # good for searching filenames
 # source: https://github.com/junegunn/fzf/issues/191#issuecomment-93650839
 fzf_options+=( --tiebreak=end )
 
-fzf_options+=( --prompt="Search > " )
-fzf_options+=( --bind="change:reload:sleep 0.4; [ -z {q} ] || ${CMD} || true" )
+fzf_options+=( --prompt="rg  > " )
 
 # Switch between Ripgrep mode and fzf mode using a single key binding.
 # Transform action is introduced in fzf 0.45.0.
 # source: https://github.com/junegunn/fzf/blob/354d0468c126c4e03b3578a752afedfd6451fd0d/ADVANCED.md#switching-between-ripgrep-mode-and-fzf-mode-using-a-single-key-binding
 if is-at-least 0.45 "$fzf_version"; then
 	rm -f /tmp/rg-fzf-{r,f}
-	fzf_options+=( --header='CTRL-T: Switch between Search/Include' )
-	fzf_options+=( --bind='ctrl-t:transform:[[ ! $FZF_PROMPT =~ Search ]] &&
-			echo "rebind(change)+change-prompt(Search > )+disable-search+transform-query:echo \{q} > /tmp/rg-fzf-f; cat /tmp/rg-fzf-r" ||
-			echo "unbind(change)+change-prompt(Include > )+enable-search+transform-query:echo \{q} > /tmp/rg-fzf-r; cat /tmp/rg-fzf-f"' )
+	fzf_header+="CTRL-T: Switch between rg/fzf"
+	fzf_header+=$'\n'
+	fzf_options+=( --bind='ctrl-t:transform:[[ ! $FZF_PROMPT =~ rg ]] &&
+			echo "rebind(change)+change-prompt(rg  > )+disable-search+transform-query:echo \{q} > /tmp/rg-fzf-f; cat /tmp/rg-fzf-r" ||
+			echo "unbind(change)+change-prompt(fzf > )+enable-search+transform-query: echo \{q} > /tmp/rg-fzf-r; cat /tmp/rg-fzf-f"' )
 fi
+
+fzf_header+="CTRL-R: Restart search"
+fzf_options+=( --bind="ctrl-r:reload:[ -z {q} ] || ${CMD} || true" )
+
+fzf_options+=( --header="${fzf_header}" )
 
 fzf \
 		--disabled \
