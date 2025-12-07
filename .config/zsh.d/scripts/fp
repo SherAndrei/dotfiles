@@ -134,11 +134,11 @@ if is-at-least 0.45 "$fzf_version"; then
 	fzf_header+="CTRL-T: Files to include"
 	fzf_header+=$'\n'
 	fzf_options+=( --bind="ctrl-t:transform:[[ ! \$FZF_PROMPT =~ rg ]] &&
-			echo \"rebind(change)+change-prompt(rg  > )+disable-search+transform-query:echo \\{q} > ${glob_file};  cat /tmp/rg-fzf-r\" ||
-			echo \"unbind(change)+change-prompt(glob> )+disable-search+transform-query:echo \\{q} > /tmp/rg-fzf-r; cat ${glob_file}\"" )
+			echo \"change-prompt(rg  > )+transform-query:echo \\{q} > ${glob_file};  cat /tmp/rg-fzf-r\" ||
+			echo \"change-prompt(glob> )+transform-query:echo \\{q} > /tmp/rg-fzf-r; cat ${glob_file}\"" )
 fi
 
-fzf_header+="CTRL-R: Restart search"
+fzf_header+="CTRL-R: Start search"
 fzf_options+=( --bind="ctrl-r:reload:[ -z {q} ] || ${CMD} || true" )
 
 fzf_options+=( --header="${fzf_header}" )
