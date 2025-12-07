@@ -39,6 +39,10 @@ set numberwidth=3
 " make selection visible in light theme
 highlight Visual ctermfg=Black ctermbg=DarkCyan cterm=NONE
 
+" style for light and dark system theme
+highlight CurrentWord      ctermfg=Black ctermbg=LightCyan cterm=NONE
+highlight CurrentWordTwins ctermfg=NONE  ctermbg=NONE      cterm=underline
+
 " Watch for external changes in files
 set autoread
 
