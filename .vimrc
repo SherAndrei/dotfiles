@@ -49,6 +49,9 @@ autocmd WinEnter * set cursorline   cursorcolumn
 highlight CursorColumn ctermfg=Black ctermbg=Gray cterm=NONE
 highlight CursorLine   ctermfg=Black ctermbg=Gray cterm=NONE
 
+" make selection visible in light theme
+highlight Visual ctermfg=Black ctermbg=DarkCyan cterm=NONE
+
 " Watch for external changes in files
 set autoread
 
