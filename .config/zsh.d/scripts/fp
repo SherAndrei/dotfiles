@@ -30,7 +30,9 @@ cd $1
 
 glob_file="/tmp/fp-glob-file"
 touch ${glob_file}
-trap "rm -f ${glob_file}" EXIT
+
+pattern_file="/tmp/fp-pattern"
+touch ${pattern_file}
 
 call_ripgrep() {
 	local CMD="rg"
@@ -134,19 +136,19 @@ if is-at-least 0.45 "$fzf_version"; then
 	fzf_header+="CTRL-T: Files to include"
 	fzf_header+=$'\n'
 	fzf_options+=( --bind="ctrl-t:transform:[[ ! \$FZF_PROMPT =~ rg ]] &&
-			echo \"change-prompt(rg  > )+transform-query:echo \\{q} > ${glob_file};  cat /tmp/rg-fzf-r\" ||
-			echo \"change-prompt(glob> )+transform-query:echo \\{q} > /tmp/rg-fzf-r; cat ${glob_file}\"" )
+			echo \"change-prompt(rg  > )+transform-query:echo \\{q} > ${glob_file};    cat ${pattern_file}\" ||
+			echo \"change-prompt(glob> )+transform-query:echo \\{q} > ${pattern_file}; cat ${glob_file}\"" )
 fi
 
 fzf_header+="CTRL-R: Start search"
-fzf_options+=( --bind="ctrl-r:reload:[ -z {q} ] || ${CMD} || true" )
+fzf_options+=( --bind="start,ctrl-r:reload:[ -z {q} ] || ${CMD} || true" )
 
 fzf_options+=( --header="${fzf_header}" )
 
 fzf \
 		--disabled \
 		"${fzf_options[@]}" \
-		--query "${2:-}" \
+		--query "${2:-$(head -1 ${pattern_file})}" \
 		--layout=reverse \
 		--delimiter : \
 		--preview "[ -z {2} ] || $(__get_file_preview_renderer)" \
