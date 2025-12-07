@@ -36,19 +36,6 @@ set relativenumber
 " amount of numberwidth=4
 set numberwidth=3
 
-" cursor crosshair
-set cursorline
-set cursorcolumn
-
-" highlight only in the current window (see :help cursorcolumn)
-autocmd WinLeave * set nocursorline nocursorcolumn
-autocmd WinEnter * set cursorline   cursorcolumn
-
-" gray out cursorline and cursorcolumn for visibility
-" in both ligth and dark themes, also disable default underline
-highlight CursorColumn ctermfg=Black ctermbg=Gray cterm=NONE
-highlight CursorLine   ctermfg=Black ctermbg=Gray cterm=NONE
-
 " make selection visible in light theme
 highlight Visual ctermfg=Black ctermbg=DarkCyan cterm=NONE
 
