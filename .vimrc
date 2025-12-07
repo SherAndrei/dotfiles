@@ -44,6 +44,10 @@ set cursorcolumn
 autocmd WinLeave * set nocursorline nocursorcolumn
 autocmd WinEnter * set cursorline   cursorcolumn
 
+" gray out cursorline and cursorcolumn for visibility
+" in both ligth and dark themes, also disable default underline
+highlight CursorColumn ctermfg=Black ctermbg=Gray cterm=NONE
+highlight CursorLine   ctermfg=Black ctermbg=Gray cterm=NONE
 
 " Watch for external changes in files
 set autoread
