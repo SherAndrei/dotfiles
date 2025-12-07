@@ -70,8 +70,15 @@ set noexpandtab
 set tabstop=2
 
 " highlight invisble stuff
-set listchars=lead:·,trail:·,tab:>→,nbsp:%
-set list
+set listchars=space:·,tab:>→,nbsp:%
+
+" enable list mode only in Insert mode
+augroup WhitespaceInInsert
+  autocmd!
+  autocmd InsertEnter * set list
+  autocmd InsertLeave * set nolist
+augroup END
+
 " highlight whitespaces at the end of lines
 highlight ExtraWhitespace ctermbg=green ctermfg=blue
 match ExtraWhitespace /\s\+$/
