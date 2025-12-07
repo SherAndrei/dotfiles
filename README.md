@@ -69,6 +69,7 @@
     - [statusline.vim](./.vim/plugin/statusline.vim)
     - [ycmrc.vim](./.vim/plugin/ycmrc.vim)
 - [.vimrc](./.vimrc)
+- [.vimrc.swp](./.vimrc.swp)
 - [.zprofile](./.zprofile)
 - [.zshenv](./.zshenv)
 - [.zshrc](./.zshrc)

@@ -22,8 +22,10 @@ autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | execute "
 " enables syntax highlighting by default.
 syntax on
 
-" set colorscheme https://github.com/tomasiser/vim-code-dark
-colorscheme codedark
+" force 16 color default scheme to be able to
+" switch light/dark themes systemwide
+set t_Co=16
+colorscheme default
 
 " add current line number
 set number
