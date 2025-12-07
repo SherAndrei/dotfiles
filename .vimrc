@@ -40,6 +40,10 @@ set numberwidth=3
 set cursorline
 set cursorcolumn
 
+" highlight only in the current window (see :help cursorcolumn)
+autocmd WinLeave * set nocursorline nocursorcolumn
+autocmd WinEnter * set cursorline   cursorcolumn
+
 
 " Watch for external changes in files
 set autoread
