@@ -66,7 +66,7 @@ set noexpandtab
 set tabstop=2
 
 " highlight invisble stuff
-set listchars=trail:·,tab:>→,nbsp:%
+set listchars=lead:·,trail:·,tab:>→,nbsp:%
 set list
 " highlight whitespaces at the end of lines
 highlight ExtraWhitespace ctermbg=green ctermfg=blue
