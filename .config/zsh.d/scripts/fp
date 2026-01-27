@@ -141,6 +141,8 @@ if is-at-least 0.45 "$fzf_version"; then
 fi
 
 fzf_header+="CTRL-R: Start search"
+fzf_header+=$'\n'
+fzf_header+="PWD: ${PWD}"
 fzf_options+=( --bind="start,ctrl-r:reload:[ -z {q} ] || ${CMD} || true" )
 
 fzf_options+=( --header="${fzf_header}" )
