@@ -33,7 +33,7 @@ fi
 
 set -e
 
-cd $1
+cd "$1"
 
 __get_file_preview_renderer() {
 	if command -v bat 2>&1 1>/dev/null; then
@@ -65,7 +65,7 @@ mru_with_find() {
 			| sort --key=2 --reverse \
 			| uniq --skip-fields=1 \
 			| sort --key=1 --numeric --reverse \
-			| awk '{ print $2 }';
+			| cut --fields=2;
 		echo '-----------------------------------'
 	fi
 	if command -v rg 2>&1 >/dev/null; then
@@ -111,8 +111,8 @@ mru_with_find \
 		--prompt="Path > " \
 		--preview="([[ -d {} ]] && $(__get_directory_preview_renderer) {}) || ([[ -f {} ]] && $(__get_file_preview_renderer) {}) || echo {}" \
 		--preview-window 'right,70%,border-left' \
-	| tee --append "$MRU" \
 	| while read fn; do
 		# Output each selected file name with proper quoting.
-		printf "%s%b" ${(q)fn} ${separator}
+		printf "%s%b" ${(q)fn} ${separator};
+		echo ${(q)fn} >> "${MRU}";
 	done
