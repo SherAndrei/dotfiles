@@ -173,3 +173,14 @@ __build_targets() {
 
 zle -N __build_targets
 bindkey "^b" __build_targets
+
+__open_file_exporer_in_current_dir() {
+  autoload -U is_wsl
+  if is_wsl;
+  then
+    explorer.exe .;
+  fi;
+}
+
+zle -N __open_file_exporer_in_current_dir
+bindkey "^e" __open_file_exporer_in_current_dir
