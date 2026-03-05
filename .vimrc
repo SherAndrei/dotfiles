@@ -32,6 +32,12 @@ set number
 " add relative numbers to current line
 " to be able to quickly jump between lines with 23j or 32k
 set relativenumber
+" toggle relative numbers based on mode
+augroup NoRelativeNumberInInsert
+  autocmd!
+  autocmd InsertEnter * set norelativenumber
+  autocmd InsertLeave * set relativenumber
+augroup END
 " as numbers are relative there is no need to use default
 " amount of numberwidth=4
 set numberwidth=3
