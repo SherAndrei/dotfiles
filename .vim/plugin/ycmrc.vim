@@ -13,6 +13,8 @@ set signcolumn=number
 " make errors and warnings distinguishable
 let g:ycm_error_symbol = '!'
 let g:ycm_warning_symbol = '?'
+" disable verbose highlighting of diagnosed places
+let g:ycm_enable_diagnostic_highlighting = 0
 
 " standard Vim LSP navigation bindings (matches LazyVim defaults)
 nnoremap gd :YcmCompleter GoTo<CR>
