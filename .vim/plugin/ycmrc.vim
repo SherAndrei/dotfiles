@@ -20,3 +20,6 @@ nnoremap gD :YcmCompleter GoToDeclaration<CR>
 nnoremap gr :YcmCompleter GoToReferences<CR>
 nnoremap gI :YcmCompleter GoToImplementation<CR>
 nnoremap gy :YcmCompleter GoToType<CR>
+
+" disable the popup
+let g:ycm_auto_hover = ''
