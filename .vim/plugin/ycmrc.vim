@@ -13,3 +13,10 @@ set signcolumn=number
 " make errors and warnings distinguishable
 let g:ycm_error_symbol = '!'
 let g:ycm_warning_symbol = '?'
+
+" standard Vim LSP navigation bindings (matches LazyVim defaults)
+nnoremap gd :YcmCompleter GoTo<CR>
+nnoremap gD :YcmCompleter GoToDeclaration<CR>
+nnoremap gr :YcmCompleter GoToReferences<CR>
+nnoremap gI :YcmCompleter GoToImplementation<CR>
+nnoremap gy :YcmCompleter GoToType<CR>
