@@ -19,8 +19,9 @@ let g:ycm_enable_diagnostic_highlighting = 0
 " standard Vim LSP navigation bindings (matches LazyVim defaults)
 nnoremap gd :YcmCompleter GoTo<CR>
 nnoremap gD :YcmCompleter GoToDeclaration<CR>
-nnoremap gr :YcmCompleter GoToReferences<CR>
+nnoremap gf :YcmCompleter GoToInclude<CR>
 nnoremap gI :YcmCompleter GoToImplementation<CR>
+nnoremap gr :YcmCompleter GoToReferences<CR>
 nnoremap gy :YcmCompleter GoToType<CR>
 
 " disable the popup
