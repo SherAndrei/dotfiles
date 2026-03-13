@@ -26,3 +26,8 @@ nnoremap gy :YcmCompleter GoToType<CR>
 
 " disable the popup
 let g:ycm_auto_hover = ''
+
+augroup ycm_doc
+  autocmd!
+  autocmd FileType c,cpp,objc,objcpp,python nnoremap <buffer> K :YcmCompleter GetDoc<CR>
+augroup END
