@@ -46,7 +46,6 @@
     - [scripts](./.config/zsh.d/scripts)
       - [ff](./.config/zsh.d/scripts/ff)
       - [fp](./.config/zsh.d/scripts/fp)
-      - [.fp.swp](./.config/zsh.d/scripts/.fp.swp)
       - [rr](./.config/zsh.d/scripts/rr)
 - [.editorconfig](./.editorconfig)
 - [.gitconfig](./.gitconfig)

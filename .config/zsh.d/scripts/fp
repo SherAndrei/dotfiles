@@ -132,14 +132,14 @@ fzf_options+=( --prompt="rg  > " )
 # Transform action is introduced in fzf 0.45.0.
 # source: https://github.com/junegunn/fzf/blob/354d0468c126c4e03b3578a752afedfd6451fd0d/ADVANCED.md#switching-between-ripgrep-mode-and-fzf-mode-using-a-single-key-binding
 if is-at-least 0.45 "$fzf_version"; then
-	rm -f /tmp/rg-fzf-{r,f}
 	fzf_header+="CTRL-T: Files to include"
 	fzf_header+=$'\n'
+	GLOB_MRU="(nl ${glob_file} | sort -k2r | uniq -f1 | sort -k1nr | cut -f2)"
 	IF_GLOB="[[ \$FZF_PROMPT =~ glob ]]"
-	fzf_options+=( --bind="ctrl-t:transform: $IF_GLOB &&
+	fzf_options+=( --bind="ctrl-t:transform: ${IF_GLOB} &&
 		echo \"change-prompt(rg  > )+transform-query([ -z {q} ] || echo \\{q} >> ${glob_file}; cat ${pattern_file})\" ||
-		echo \"change-prompt(glob> )+reload(echo \\{q} > ${pattern_file}; sort -u ${glob_file})+transform-query(tail -1 ${glob_file})\"" )
-	fzf_options+=( --bind="focus:transform: $IF_GLOB && echo \"replace-query\"")
+		echo \"change-prompt(glob> )+reload(echo \\{q} > ${pattern_file}; ${GLOB_MRU})+transform-query(tail -1 ${glob_file})\"" )
+	fzf_options+=( --bind="focus:transform: ${IF_GLOB} && echo \"replace-query\"")
 fi
 
 fzf_header+="CTRL-R: Start search"

@@ -60,8 +60,7 @@ mru_with_find() {
 		# remove any duplicates
 		# double reverse here is required for
 		# uniq, as it leaves only first occurence
-		cat "$MRU" \
-			| nl \
+		nl "$MRU" \
 			| sort --key=2 --reverse \
 			| uniq --skip-fields=1 \
 			| sort --key=1 --numeric --reverse \
