@@ -6,7 +6,26 @@
 local target=${1:?}
 shift
 
+function resolve_most_git_superproject()
+{
+  local found_dir="$(git rev-parse --show-toplevel)"
+
+  while true; do
+    local super="$(git -C "$found_dir" rev-parse --show-superproject-working-tree)"
+    if [[ -z "$super" ]]; then
+      break
+    fi
+
+    found_dir="$super"
+  done
+  [[ -e "$found_dir/fbuild.bff" ]] || exit 1
+  echo "$found_dir"
+}
+
 clear
+
+super="$(resolve_most_git_superproject)"
+cd "$super"
 
 ${FBUILD} -dist -cache "${target}"
 (( ! $? )) || return
