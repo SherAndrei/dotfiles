@@ -2,8 +2,7 @@
 
 # rerun: build target and run it with args
 
-: "${FBUILD:?}"
-local target=${1:?}
+local target="${1:?}"
 shift
 
 function resolve_most_git_superproject()
@@ -18,8 +17,22 @@ function resolve_most_git_superproject()
 
     found_dir="$super"
   done
-  [[ -e "$found_dir/fbuild.bff" ]] || exit 1
   echo "$found_dir"
+}
+
+function configure_cmake()
+{
+  : ${1:?}
+  mkdir -p "${1}";
+  "${CMAKE}" \
+    -S \
+    . \
+    -B \
+    "${1}" \
+    -DCMAKE_EXPORT_COMPILE_COMMANDS=ON;
+
+  echo "Build done...";
+  sleep 5;
 }
 
 clear
@@ -27,11 +40,27 @@ clear
 super="$(resolve_most_git_superproject)"
 cd "$super"
 
-${FBUILD} -dist -cache "${target}"
-(( ! $? )) || return
+executable=""
 
-local executable_name="${target%-*-*-*-*}"
-local executable="`pwd`/${target/#${executable_name}-/}/${executable_name}"
+if [[ -e "CMakeLists.txt" ]]; then
+  : "${CMAKE:?}"
+  local build_dir="./build_x64"
+  local config="Debug"
+
+  [[ -d "${build_dir}" ]] || configure_cmake "${build_dir}";
+  "${CMAKE}" --build "${build_dir}" --config "${config}" --target "${target}"
+  (( ! $? )) || return
+
+  executable="$(find ${build_dir}/${target}/${config} -iname '*.exe')"
+elif [[ -e "fbuild.bff" ]]; then
+  : "${FBUILD:?}"
+
+  "${FBUILD}" -dist -cache "${target}"
+  (( ! $? )) || return
+
+  executable_name="${target%-*-*-*-*}"
+  executable="`pwd`/${target/#${executable_name}-/}/${executable_name}"
+fi
 
 if ! command -v ${executable} 2>&1 >/dev/null;
 then
