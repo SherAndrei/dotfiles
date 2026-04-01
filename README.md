@@ -64,6 +64,8 @@
   - [plugin](./.vim/plugin)
     - [bracketed-paste.vim](./.vim/plugin/bracketed-paste.vim)
     - [disable-builtin.vim](./.vim/plugin/disable-builtin.vim)
+    - [folding.vim](./.vim/plugin/folding.vim)
+    - [git-link-to-line.vim](./.vim/plugin/git-link-to-line.vim)
     - [hard.vim](./.vim/plugin/hard.vim)
     - [search.vim](./.vim/plugin/search.vim)
     - [statusline.vim](./.vim/plugin/statusline.vim)
