@@ -66,12 +66,6 @@ set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
 " copy indent from current line when starting a new line
 set autoindent
 
-" number of spaces to use for each step of (auto)indent.
-set shiftwidth=2
-
-" do not use the appropriate number of spaces to insert a <Tab>.
-set noexpandtab
-
 " number of spaces that a <Tab> in the file counts for.
 set tabstop=2
 
