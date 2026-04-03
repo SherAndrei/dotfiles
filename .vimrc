@@ -87,3 +87,6 @@ match ExtraWhitespace /\s\+$/
 set formatoptions+=j
 
 set clipboard=unnamed
+
+" disable show of extra information in the preview window
+set completeopt-=preview
