@@ -1,48 +1,59 @@
-function! Link() range
-  " Get the filename relative to repo root
-  let l:repo_root = system('git rev-parse --show-toplevel 2>/dev/null | tr -d "\n"')
-  if v:shell_error
-    echo "Not in a git repository"
+" Function: Link(line) – echoes GitHub URL for line number 'line'
+function! Link(line) abort
+  let l:line = a:line
+
+  " Current file absolute path
+  let l:file = expand('%:p')
+  if empty(l:file)
+    echo "No file name (buffer not saved?)"
     return
   endif
 
-  " Get current file path relative to repo root
-  let l:file_path = expand('%')
-  let l:full_path = fnamemodify(l:file_path, ':p')
-  let l:relative_path = substitute(l:full_path, '^' . l:repo_root . '/', '', '')
-
-  " Get current git remote URL and extract repo part
-  let l:remote_url = system('git config --get remote.origin.url 2>/dev/null | tr -d "\n"')
-  if v:shell_error || empty(l:remote_url)
-    echo "No remote origin URL found"
+  " Find repository root (works inside submodules)
+  let l:repo_root = system('git -C ' . shellescape(fnamemodify(l:file, ':h')) . ' rev-parse --show-toplevel 2>/dev/null')
+  let l:repo_root = substitute(l:repo_root, '\n$', '', '')
+  if v:shell_error || empty(l:repo_root)
+    echo "Not in a Git repository"
     return
   endif
 
-  " Convert git URL to HTTPS format if needed
-  let l:repo_url = l:remote_url
-  if l:repo_url =~ '^git@'
-    " Convert git@github.com:user/repo.git to https://github.com/user/repo
-    let l:repo_url = substitute(l:repo_url, '^git@\(.*\):', 'https://\1/', '')
-    let l:repo_url = substitute(l:repo_url, '\.git$', '', '')
-  elseif l:repo_url =~ '^https://'
-    " Remove .git suffix if present
-    let l:repo_url = substitute(l:repo_url, '\.git$', '', '')
+  " Relative path from repo root to current file
+  let l:rel_path = strpart(l:file, len(l:repo_root) + 1)
+
+  " Get remote URL (prefer 'origin', else first remote)
+  let l:remote = system('git -C ' . shellescape(l:repo_root) . ' config --get remote.origin.url 2>/dev/null')
+  let l:remote = substitute(l:remote, '\n$', '', '')
+  if empty(l:remote)
+    let l:first_remote = system('git -C ' . shellescape(l:repo_root) . ' remote 2>/dev/null | head -n1')
+    let l:first_remote = substitute(l:first_remote, '\n$', '', '')
+    if !empty(l:first_remote)
+      let l:remote = system('git -C ' . shellescape(l:repo_root) . ' config --get remote.' . l:first_remote . '.url')
+      let l:remote = substitute(l:remote, '\n$', '', '')
+    endif
   endif
 
-  " Get current commit hash
-  let l:commit_hash = system('git rev-parse HEAD 2>/dev/null | tr -d "\n"')
-  if v:shell_error
-    echo "Failed to get commit hash"
+  if empty(l:remote)
+    echo "No remote URL found"
     return
   endif
 
-  " Construct the URL
-  let l:line_number = a:firstline
-  let l:url = printf('%s/-/blob/%s/%s#L%d', l:repo_url, l:commit_hash, l:relative_path, l:line_number)
+  " Convert SSH git@... to HTTPS URL, remove trailing .git
+  let l:remote = substitute(l:remote, '^git@\([^:]*\):', 'https://\1/', '')
+  let l:remote = substitute(l:remote, '\.git$', '', '')
 
-  " Echo the URL
+  " Get current HEAD commit hash
+  let l:commit = system('git -C ' . shellescape(l:repo_root) . ' rev-parse HEAD 2>/dev/null')
+  let l:commit = substitute(l:commit, '\n$', '', '')
+  if empty(l:commit)
+    echo "No commit hash (detached HEAD?)"
+    return
+  endif
+
+  " Build the GitHub URL
+  let l:url = printf('%s/blob/%s/%s#L%d', l:remote, l:commit, l:rel_path, l:line)
+
   echo l:url
 endfunction
 
-" Command to call the function on current line
-command! Link call Link()
+" Command :Link – uses current line number
+command! -nargs=0 Link call Link(line('.'))
