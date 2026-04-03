@@ -85,3 +85,5 @@ match ExtraWhitespace /\s\+$/
 
 " delete comment character when joining commented lines.
 set formatoptions+=j
+
+set clipboard=unnamed
