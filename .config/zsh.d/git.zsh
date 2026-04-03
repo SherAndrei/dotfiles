@@ -44,7 +44,7 @@ function git_current_branch() {
 function git_main_branch() {
   git rev-parse --git-dir &>/dev/null || return
   local ref
-  for ref in refs/{heads,remotes/{origin,upstream}}/{main,trunk,mainline,default,stable,master}; do
+  for ref in refs/{heads,remotes/{origin,upstream}}/{main,master}; do
     if git show-ref -q --verify $ref; then
       echo ${ref:t}
       return 0
