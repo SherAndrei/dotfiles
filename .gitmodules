@@ -58,3 +58,6 @@
 [submodule ".vim/pack/code/start/vim-sleuth"]
 	path = .vim/pack/code/start/vim-sleuth
 	url = https://github.com/tpope/vim-sleuth
+[submodule ".vim/pack/code/start/vim-abolish"]
+	path = .vim/pack/code/start/vim-abolish
+	url = https://github.com/tpope/vim-abolish.git
