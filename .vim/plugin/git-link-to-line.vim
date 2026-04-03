@@ -52,6 +52,11 @@ function! Link(line) abort
   " Build the GitHub URL
   let l:url = printf('%s/blob/%s/%s#L%d', l:remote, l:commit, l:rel_path, l:line)
 
+  if has('clipboard') || has('clipboard_provider')
+    let @+ = l:url
+    let l:url .= " (copied to clipboard)"
+  endif
+
   echo l:url
 endfunction
 
