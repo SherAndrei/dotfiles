@@ -88,5 +88,8 @@ set formatoptions+=j
 
 set clipboard=unnamed
 
+" enable mouse scroll
+set mouse=a
+
 " disable show of extra information in the preview window
 set completeopt-=preview
