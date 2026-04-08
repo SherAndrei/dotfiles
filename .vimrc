@@ -87,6 +87,11 @@ match ExtraWhitespace /\s\+$/
 set formatoptions+=j
 
 set clipboard=unnamed
+" by default 'p' puts previously selected text in unnamed register,
+" see `help put-Visual-mode`, thus making pasting from unnamed to visual
+" selection useless
+" source: https://vi.stackexchange.com/a/40028
+xnoremap p P
 
 " enable mouse scroll
 set mouse=a
