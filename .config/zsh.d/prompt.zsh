@@ -10,6 +10,10 @@ PURE_GIT_DOWN_ARROW='↓'
 PURE_GIT_UP_ARROW='↑'
 PURE_PROMPT_VICMD_SYMBOL='<'
 
+# disalbe auto git fetch since it conficts
+# with the idea of `git push --force-with-lease`
+PURE_GIT_PULL=0
+
 # xterm-256color system blue (bold blue as in `ls` directory color '\e[01;34m')
 # source: https://www.ditig.com/256-colors-cheat-sheet
 zstyle :prompt:pure:path color 12
