@@ -1,3 +1,43 @@
+" Get repository root for the given file (supports submodules)
+function! s:GetRepoRoot(file) abort
+  let l:repo_root = system('git -C ' . shellescape(fnamemodify(a:file, ':h')) . ' rev-parse --show-toplevel 2>/dev/null')
+  let l:repo_root = substitute(l:repo_root, '\n$', '', '')
+  if v:shell_error || empty(l:repo_root)
+    return ''
+  endif
+  return l:repo_root
+endfunction
+
+" Get remote URL (prefer origin, else first remote), convert to HTTPS
+function! s:GetRemoteUrl(repo_root) abort
+  let l:remote = system('git -C ' . shellescape(a:repo_root) . ' config --get remote.origin.url 2>/dev/null')
+  let l:remote = substitute(l:remote, '\n$', '', '')
+  if empty(l:remote)
+    let l:first_remote = system('git -C ' . shellescape(a:repo_root) . ' remote 2>/dev/null | head -n1')
+    let l:first_remote = substitute(l:first_remote, '\n$', '', '')
+    if !empty(l:first_remote)
+      let l:remote = system('git -C ' . shellescape(a:repo_root) . ' config --get remote.' . l:first_remote . '.url')
+      let l:remote = substitute(l:remote, '\n$', '', '')
+    endif
+  endif
+  if empty(l:remote)
+    return ''
+  endif
+
+  let l:remote = substitute(l:remote, '^git@\([^:]*\):', 'https://\1/', '')
+  let l:remote = substitute(l:remote, '\.git$', '', '')
+  return l:remote
+endfunction
+
+function! s:TeeToClipboard(text) abort
+  if has('clipboard') || has('clipboard_provider')
+    let @+ = a:text
+    echo a:text . " (copied to clipboard)"
+  else
+    echo a:text
+  endif
+endfunction
+
 " Function: Link(line) – echoes GitHub URL for line number 'line'
 function! Link(line) abort
   let l:line = a:line
@@ -9,37 +49,19 @@ function! Link(line) abort
     return
   endif
 
-  " Find repository root (works inside submodules)
-  let l:repo_root = system('git -C ' . shellescape(fnamemodify(l:file, ':h')) . ' rev-parse --show-toplevel 2>/dev/null')
-  let l:repo_root = substitute(l:repo_root, '\n$', '', '')
-  if v:shell_error || empty(l:repo_root)
+  let l:repo_root = s:GetRepoRoot(l:file)
+  if empty(l:repo_root)
     echo "Not in a Git repository"
     return
-  endif
+  endif"
 
-  " Relative path from repo root to current file
   let l:rel_path = strpart(l:file, len(l:repo_root) + 1)
 
-  " Get remote URL (prefer 'origin', else first remote)
-  let l:remote = system('git -C ' . shellescape(l:repo_root) . ' config --get remote.origin.url 2>/dev/null')
-  let l:remote = substitute(l:remote, '\n$', '', '')
-  if empty(l:remote)
-    let l:first_remote = system('git -C ' . shellescape(l:repo_root) . ' remote 2>/dev/null | head -n1')
-    let l:first_remote = substitute(l:first_remote, '\n$', '', '')
-    if !empty(l:first_remote)
-      let l:remote = system('git -C ' . shellescape(l:repo_root) . ' config --get remote.' . l:first_remote . '.url')
-      let l:remote = substitute(l:remote, '\n$', '', '')
-    endif
-  endif
-
+  let l:remote = s:GetRemoteUrl(l:repo_root)
   if empty(l:remote)
     echo "No remote URL found"
     return
   endif
-
-  " Convert SSH git@... to HTTPS URL, remove trailing .git
-  let l:remote = substitute(l:remote, '^git@\([^:]*\):', 'https://\1/', '')
-  let l:remote = substitute(l:remote, '\.git$', '', '')
 
   let l:remote_HEAD_commit = system('git -C ' . shellescape(l:repo_root) . ' rev-parse origin/HEAD')
   let l:remote_HEAD_commit = substitute(l:remote_HEAD_commit, '\n$', '', '')
@@ -84,13 +106,73 @@ function! Link(line) abort
     let l:url = printf('%s/blob/%s/%s', l:remote, l:ref, l:rel_path)
   endif
 
-  if has('clipboard') || has('clipboard_provider')
-    let @+ = l:url
-    let l:url .= " (copied to clipboard)"
-  endif
-
-  echo l:url
+  call s:TeeToClipboard(l:url)
 endfunction
 
 " Command :Link – uses current line number
 command! -nargs=0 Link call Link(line('.'))
+
+function! BlameLink(line) abort
+  let l:line = a:line
+  let l:file = expand('%:p')
+  if empty(l:file)
+    echo "No file name (buffer not saved?)"
+    return
+  endif
+
+  let l:repo_root = s:GetRepoRoot(l:file)
+  if empty(l:repo_root)
+    echo "Not in a Git repository"
+    return
+  endif
+
+  let l:rel_path = strpart(l:file, len(l:repo_root) + 1)
+
+  let l:remote = s:GetRemoteUrl(l:repo_root)
+  if empty(l:remote)
+    echo "No remote URL found"
+    return
+  endif
+
+  " -l
+  "   Show long rev (Default: off).
+  " -s
+  "   Suppress the author name and timestamp from the output.
+  " -f, --show-name
+  "   Show the filename in the original commit. By default the filename is shown if there is any line that came from a file with a different name, due to rename detection.
+  " -n, --show-number
+  "   Show the line number in the original commit (Default: off).
+  let l:blame_cmd = 'git -C ' . shellescape(l:repo_root)
+        \ . ' blame -l -s --show-name --show-number -L ' . l:line . ',' . l:line
+        \ . ' -- ' . shellescape(l:rel_path)
+        \ . ' 2>/dev/null'
+  let l:output = system(l:blame_cmd)
+  let l:output = substitute(l:output, '\n$', '', '')
+
+  if empty(l:output)
+    echo "Could not get blame information for line " . l:line
+    return
+  endif
+
+  " Parse the output line: <commit> <filename> <orig_line> <current_line>) ...
+  let l:fields = split(l:output)
+  if len(l:fields) < 3
+    echo "Unexpected blame output format"
+    return
+  endif
+
+  let l:commit = l:fields[0]
+  let l:orig_filename = l:fields[1]
+  let l:orig_line = l:fields[2]
+
+  if l:commit =~# '^0\+$'
+    echo "Warning: line is not yet committed, blame will be useless."
+    return
+  endif
+
+  let l:url = printf('%s/blame/%s/%s#L%d', l:remote, l:commit, l:orig_filename, l:orig_line)
+
+  call s:TeeToClipboard(l:url)
+endfunction
+
+command! -nargs=0 BlameLink call BlameLink(line('.'))
