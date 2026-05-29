@@ -64,7 +64,9 @@ mru_with_find() {
 			| sort -k2 -k1nr \
 			| uniq --skip-fields=1 \
 			| sort -k1nr \
-			| cut --fields=2;
+			| cut --fields=2 \
+			| while IFS= read -r file; do [ -e "$file" ] && echo "$file"; done \
+			;
 		echo '-----------------------------------'
 	fi
 	if command -v rg 2>&1 >/dev/null; then
