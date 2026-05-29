@@ -55,7 +55,7 @@ __get_directory_preview_renderer() {
 
 MRU="/tmp/ff-mru-cache$(echo "$1" | tr ' ~./\\:' '_')"
 
-mru_with_find() {
+mru_with_find_impl() {
 	if [ -f "$MRU" ]; then
 		# remove any duplicates
 		# double reverse here is required for
@@ -87,6 +87,9 @@ mru_with_find() {
 		--characters=3-
 }
 
+mru_with_find() {
+	mru_with_find_impl | awk '!seen[$0]++'
+}
 # -U: alias  expansion  is  suppressed  when  the function is loaded.
 # -z: mark the function to be autoloaded using the zsh style
 autoload -Uz is-at-least
