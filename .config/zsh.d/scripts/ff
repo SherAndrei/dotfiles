@@ -61,9 +61,9 @@ mru_with_find() {
 		# double reverse here is required for
 		# uniq, as it leaves only first occurence
 		nl "$MRU" \
-			| sort --key=2 --reverse \
+			| sort -k2 -k1nr \
 			| uniq --skip-fields=1 \
-			| sort --key=1 --numeric --reverse \
+			| sort -k1nr \
 			| cut --fields=2;
 		echo '-----------------------------------'
 	fi
