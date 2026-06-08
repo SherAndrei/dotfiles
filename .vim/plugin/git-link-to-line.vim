@@ -145,12 +145,12 @@ function! BlameLink(line) abort
   let l:blame_cmd = 'git -C ' . shellescape(l:repo_root)
         \ . ' blame -l -s --show-name --show-number -L ' . l:line . ',' . l:line
         \ . ' -- ' . shellescape(l:rel_path)
-        \ . ' 2>/dev/null'
   let l:output = system(l:blame_cmd)
   let l:output = substitute(l:output, '\n$', '', '')
 
-  if empty(l:output)
+  if empty(l:output) || v:shell_error
     echo "Could not get blame information for line " . l:line
+    echo l:output
     return
   endif
 
