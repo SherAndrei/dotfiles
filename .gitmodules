@@ -64,3 +64,6 @@
 [submodule ".vim/pack/code/start/vim-commentary"]
 	path = .vim/pack/code/start/vim-commentary
 	url = https://github.com/tpope/vim-commentary
+[submodule ".vim/pack/code/start/vim-unimpaired"]
+	path = .vim/pack/code/start/vim-unimpaired
+	url = https://github.com/tpope/vim-unimpaired.git
