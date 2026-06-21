@@ -58,13 +58,8 @@ MRU="/tmp/ff-mru-cache$(echo "$1" | tr ' ~./\\:' '_')"
 mru_with_find_impl() {
 	if [ -f "$MRU" ]; then
 		# remove any duplicates
-		# double reverse here is required for
-		# uniq, as it leaves only first occurence
-		nl "$MRU" \
-			| sort -k2 -k1nr \
-			| uniq --skip-fields=1 \
-			| sort -k1nr \
-			| cut --fields=2 \
+		tac "$MRU" \
+			| awk '!seen[$0]++' \
 			| while IFS= read -r file; do [ -e "$file" ] && echo "$file"; done \
 			;
 		echo '-----------------------------------'
