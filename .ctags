@@ -1,0 +1,1 @@
+--regex-sql=/[Cc][Rr][Ee][Aa][Tt][Ee][ \t]+[Tt][Aa][Bb][Ll][Ee][ \t]+[Ii][Ff][ \t]+[Nn][Oo][Tt][ \t]+[Ee][Xx][Ii][Ss][Tt][Ss][ \t]+([a-zA-Z0-9_]+)/\1/t,table/
