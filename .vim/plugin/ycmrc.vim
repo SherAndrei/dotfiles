@@ -8,6 +8,12 @@
 " syntax highlighting based on regular expressions
 let g:ycm_enable_semantic_highlighting=1
 
+" Let YCM collect identifiers from tags files
+" using them as external database for identifiers
+" instead of collecting them in memory
+" Source: https://github.com/ycm-core/YouCompleteMe/issues/135#issuecomment-13903816
+let g:ycm_collect_identifiers_from_tags_files = 1
+
 " stop screen from shifting when encounter an error/warning
 set signcolumn=number
 " make errors and warnings distinguishable
