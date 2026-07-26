@@ -1,0 +1,4 @@
+#!/bin/sh
+
+# current Unix timestamp in milliseconds
+date '+%s%3N'
