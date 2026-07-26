@@ -1,0 +1,5 @@
+#!/bin/sh
+
+epoch_in_ms=${1:?}
+epoch_in_sec=$(echo "scale=0; $epoch_in_ms / 1000" | bc)
+date --rfc-3339=seconds --date @$epoch_in_sec
