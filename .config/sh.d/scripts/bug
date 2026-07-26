@@ -1,0 +1,6 @@
+#!/bin/sh
+
+work_package_number="${1:?}";
+bug_dir="${BUGS_DIR:?}/${work_package_number}";
+mkdir -p "${bug_dir}";
+cd "${bug_dir}";
