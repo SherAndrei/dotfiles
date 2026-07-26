@@ -73,3 +73,6 @@
 [submodule ".vim/pack/code/start/vim-gutentags"]
 	path = .vim/pack/code/start/vim-gutentags
 	url = https://github.com/ludovicchabant/vim-gutentags
+[submodule ".vim/pack/code/start/vim-repeat"]
+	path = .vim/pack/code/start/vim-repeat
+	url = https://github.com/tpope/vim-repeat.git
