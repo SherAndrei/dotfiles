@@ -67,6 +67,8 @@
       - [start](./.vim/pack/themes/start)
   - [plugin](./.vim/plugin)
     - [2clip-clipboard.vim](./.vim/plugin/2clip-clipboard.vim)
+    - [autosave.vim](./.vim/plugin/autosave.vim)
+    - [.autosave.vim.swp](./.vim/plugin/.autosave.vim.swp)
     - [bracketed-paste.vim](./.vim/plugin/bracketed-paste.vim)
     - [camelcasemotionrc.vim](./.vim/plugin/camelcasemotionrc.vim)
     - [disable-builtin.vim](./.vim/plugin/disable-builtin.vim)
