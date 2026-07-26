@@ -1,0 +1,4 @@
+#!/bin/sh
+
+text=${1:?}
+echo -n "$text" | sha1sum | cut -c-8
