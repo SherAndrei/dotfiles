@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+set -e
+lhs=${1:?};
+rhs=${2:?};
+
+lesser="";
+greater="";
+{ read lesser; read greater; } < <((echo "${lhs}"; echo "${rhs}") | sort)
+chat_id="$(echo -n "${lesser}${greater}" | sha1sum | cut -d' ' -f-1)"
+
+echo "SHA1(\"${lesser}${greater}\")=${chat_id}"
