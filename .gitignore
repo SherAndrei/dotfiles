@@ -22,3 +22,8 @@ Session.vim
 \.pre-commit-hooks
 
 tmp/*
+
+tags
+TAGS
+.tags
+.TAGS
