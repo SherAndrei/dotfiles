@@ -136,44 +136,6 @@ bindkey "^[OP" __cddotdot # F1
 bindkey -s "^[OQ" " git status\n" # F2
 bindkey -s "^[OR" " git log --oneline -10\n" # F3
 
-
-# <C-b> popups build targets in separate tmux popup window.
-# Currently supports
-# 1. fbuild (searches for `fbuild.bff` in ${PWD} and calls to `-showtargets`)
-__select_fbuild_target() {
-	: ${1:?}
-	"${1}" -showtargets -quiet |
-		grep --perl-regexp '\t' |
-		sed --expression='s/\t//' |
-		tr --delete '\r' |
-		fzf-tmux           \
-			-p 30%,30%       \
-			-y 4             \
-			--               \
-			--no-multi       \
-			--no-sort        \
-			--layout=reverse \
-}
-
-__build_targets() {
-	local __appendix_to_lbuffer=""
-
-	local __fbuild=${FBUILD:-fbuild}
-	if command -v "${__fbuild}" 2>&1 >/dev/null;
-	then
-		if [ ! -e "${PWD}/fbuild.bff" ]; then
-			tmux display-message "no fbuild.bff found";
-			return;
-		fi;
-		__appendix_to_lbuffer=$(__select_fbuild_target "${__fbuild}")
-	fi;
-
-	LBUFFER+="${__appendix_to_lbuffer}"
-}
-
-zle -N __build_targets
-bindkey "^b" __build_targets
-
 __open_file_exporer_in_current_dir() {
   autoload -U is_wsl
   if is_wsl;
