@@ -184,3 +184,11 @@ __open_file_exporer_in_current_dir() {
 
 zle -N __open_file_exporer_in_current_dir
 bindkey "^e" __open_file_exporer_in_current_dir
+
+# do nothing on control commands to keep prompt empty
+_zle_noop() { : }
+
+zle -N _zle_noop
+
+bindkey '^[[I' _zle_noop # Focus gained
+bindkey '^[[O' _zle_noop # Focus lost

@@ -9,6 +9,8 @@ CONFIG_DIR="${HOME}/.config"
 
 SH_CONFIG_DIR="${HOME}/.config/sh.d"
 
+. "${SH_CONFIG_DIR}/focus-events.sh"
+
 # These are sorted alphabetically
 
 BASH_CONFIG_DIR="${HOME}/.config/bash.d"
