@@ -63,6 +63,7 @@
 - [.inputrc](./.inputrc)
 - [README.md.orig](./README.md.orig)
 - [tags](./tags)
+- [.tmp.swp](./.tmp.swp)
 - [.tmux](./.tmux)
 - [.tmux.conf](./.tmux.conf)
   - [plugins](./.tmux/plugins)

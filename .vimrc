@@ -44,18 +44,9 @@ highlight CurrentWord      ctermfg=Black ctermbg=LightCyan cterm=NONE
 highlight CurrentWordTwins ctermfg=NONE  ctermbg=NONE      cterm=underline
 
 " If Vim detects that a file has been changed outside Vim and not inside Vim,
-" 'autoread' will make Vim reread it automatically.
+" 'autoread' will make Vim reread it automatically. Focus events help with
+" this drastically.
 set autoread
-" ... But that auto-read won't happen if you do nothing. Vim checks timestamps
-" after invoking the shell, and when you issue the ":checktime" command. So we
-" add this so that the check will be triggered *once* if you wait for
-" 'updatetime' milliseconds without doing anything, then it won't be
-" retriggered until you hit a key.
-" Source: https://www.mail-archive.com/vim@vim.org/msg05900.html
-augroup UsefulAutoRead
-  autocmd!
-  autocmd FocusGained,FocusLost * silent! checktime
-augroup End
 
 " enable auto completion menu after pressing TAB.
 set wildmenu

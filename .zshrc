@@ -55,3 +55,6 @@ setopt NO_BEEP
 # Recognize comments on the command line
 setopt INTERACTIVE_COMMENTS
 
+# Enable focus events in terminal
+# Source: https://en.wikipedia.org/wiki/ANSI_escape_code#:~:text=Enable%20reporting%20focus.
+printf "\e[?1004h"
