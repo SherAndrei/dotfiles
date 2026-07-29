@@ -27,3 +27,5 @@ tags
 TAGS
 .tags
 .TAGS
+
+.vim/.netrwhist
