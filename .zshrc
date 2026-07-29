@@ -42,6 +42,12 @@ export FPATH="$ZSH_CONFIG_DIR/functions:$FPATH"
 # Created by `pipx`
 export PATH="$PATH:${HOME}/.local/bin"
 
+# Required for `nvm`
+# Source: https://www.nvmnode.com/guide/installation-sh.html#using-the-installation-script
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 # must be at the end of .zshrc
 # source: https://github.com/zsh-users/zsh-syntax-highlighting?tab=readme-ov-file#faq
 . "$ZSH_CONFIG_DIR"/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
