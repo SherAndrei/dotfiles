@@ -93,3 +93,9 @@ set mouse=a
 
 " disable show of extra information in the preview window
 set completeopt-=preview
+
+if has('python')
+  map <C-K> :pyf $HOME/.local/bin/clang-format.py<cr>
+elseif has('python3')
+  map <C-K> :py3f $HOME/.local/bin/clang-format.py<cr>
+endif
