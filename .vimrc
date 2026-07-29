@@ -99,3 +99,7 @@ if has('python')
 elseif has('python3')
   map <C-K> :py3f $HOME/.local/bin/clang-format.py<cr>
 endif
+
+" start with a tags file in the current directory and go up to the root
+" Source: https://stackoverflow.com/a/6289891/15751315
+set tags=./tags;/;
