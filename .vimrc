@@ -103,3 +103,6 @@ endif
 " start with a tags file in the current directory and go up to the root
 " Source: https://stackoverflow.com/a/6289891/15751315
 set tags=./tags;/;
+
+set undofile                " Enables undo file which stores all history for every file
+set undodir=~/.vim/undo     " Place to store undofiles
