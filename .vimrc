@@ -106,3 +106,4 @@ set tags=./tags;/;
 
 set undofile                " Enables undo file which stores all history for every file
 set undodir=~/.vim/undo     " Place to store undofiles
+set directory=~/.vim/swap   " Place to store swapfiles

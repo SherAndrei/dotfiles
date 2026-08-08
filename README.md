@@ -64,6 +64,7 @@
 - [.inputrc](./.inputrc)
 - [README.md.orig](./README.md.orig)
 - [tags](./tags)
+- [tmp.txt](./tmp.txt)
 - [.tmux](./.tmux)
 - [.tmux.conf](./.tmux.conf)
   - [plugins](./.tmux/plugins)
@@ -91,7 +92,7 @@
     - [vimgrep-rg.vim](./.vim/plugin/vimgrep-rg.vim)
     - [ycmrc.vim](./.vim/plugin/ycmrc.vim)
 - [.vimrc](./.vimrc)
-- [.zprofile](./.zprofile)
+- [.vimrc.orig](./.vimrc.orig)
 - [.zshenv](./.zshenv)
 - [.zshrc](./.zshrc)
 ---
