@@ -13,6 +13,8 @@ set statusline+=\ %R
 " divider to separate the left side from the right side.
 set statusline+=%=
 
+set statusline+=\ %{&fileencoding}
+
 " column number (cursor position)
 set statusline+=\ %c
 
