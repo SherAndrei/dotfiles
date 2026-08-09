@@ -22,3 +22,10 @@ augroup AutoSave
   autocmd!
   autocmd CursorHold,CursorHoldI * nested call AutoSave()
 augroup END
+
+" Write the contents of the file, if it has been modified, on each
+" `:next`, `:rewind`, `:last`, `:first`, `:previous`, `:stop`,
+" `:suspend`, `:tag`, `:!`, `:make`, CTRL-] and CTRL-^ command; and when
+" a `:buffer`, CTRL-O, CTRL-I, '{A-Z0-9}, or `{A-Z0-9} command takes one
+" to another file.
+set autowrite
