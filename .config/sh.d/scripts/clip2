@@ -18,4 +18,4 @@
 #   * https://stackoverflow.com/a/57134096/15751315
 # * About chcp: https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/chcp
 # * About code-page identifiers: https://learn.microsoft.com/en-us/windows/win32/intl/code-page-identifiers
-powershell.exe -noprofile -command Get-Clipboard
+powershell.exe -noprofile -command "[Console]::OutputEncoding = [System.Text.Encoding]::UTF8; Get-Clipboard"
