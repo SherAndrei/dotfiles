@@ -83,6 +83,7 @@
     - [easy-alignrc.vim](./.vim/plugin/easy-alignrc.vim)
     - [folding.vim](./.vim/plugin/folding.vim)
     - [git-link-to-line.vim](./.vim/plugin/git-link-to-line.vim)
+    - [gutentagsrc.vim](./.vim/plugin/gutentagsrc.vim)
     - [hard.vim](./.vim/plugin/hard.vim)
     - [search.vim](./.vim/plugin/search.vim)
     - [sidewaysrc.vim](./.vim/plugin/sidewaysrc.vim)
