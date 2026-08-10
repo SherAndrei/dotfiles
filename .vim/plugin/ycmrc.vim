@@ -37,3 +37,6 @@ augroup ycm_doc
   autocmd!
   autocmd FileType c,cpp,objc,objcpp,python nnoremap <buffer> K :YcmCompleter GetDoc<CR>
 augroup END
+
+nmap <leader>yrr :exe 'YcmCompleter RefactorRename '.input('Refactor to: ')<cr>
+nmap <leader>yfx :exe 'YcmCompleter FixIt'<cr>
