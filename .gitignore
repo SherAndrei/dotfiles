@@ -29,3 +29,5 @@ TAGS
 .TAGS
 
 .vim/.netrwhist
+.vim/undo
+.vim/swap
