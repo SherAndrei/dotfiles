@@ -1,0 +1,32 @@
+#!/bin/sh
+
+# pg_terminate_backend – terminate all other connections to a given database
+# Usage: pg_terminate_backend [psql options] -d dbname [other psql options]
+
+TARGET_DB=""
+
+i=1
+while [ $i -le $# ]; do
+    arg=$(eval echo \$$i)
+    case "$arg" in
+        -d)
+            i=$((i + 1))
+            if [ $i -gt $# ]; then
+                echo "Error: -d requires a database name argument" >&2
+                exit 1
+            fi
+            TARGET_DB=$(eval echo \$$i)
+            ;;
+    esac
+    i=$((i + 1))
+done
+
+[ -n "$TARGET_DB" ] || { echo "Error: -d database name is required" >&2; exit 1; }
+
+# Source: https://stackoverflow.com/a/5408501/15751315
+SQL="SELECT pg_terminate_backend(pg_stat_activity.pid)
+     FROM pg_stat_activity
+     WHERE pg_stat_activity.datname = '$TARGET_DB'
+       AND pid <> pg_backend_pid();"
+
+exec psql "$@" -c "$SQL"
