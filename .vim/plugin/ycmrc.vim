@@ -40,3 +40,6 @@ augroup END
 
 nmap <leader>yrr :exe 'YcmCompleter RefactorRename '.input('Refactor to: ', expand('<cword>'))<cr>
 nmap <leader>yfx :exe 'YcmCompleter FixIt'<cr>
+
+" enable jumping through location list and do mass changes
+let g:ycm_always_populate_location_list = 1
