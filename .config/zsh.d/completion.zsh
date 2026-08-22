@@ -65,3 +65,6 @@ zstyle '*' single-ignored show
 autoload -U  +X bashcompinit && bashcompinit
 # automatically load zsh  completion functions if they were not defined
 autoload -Uz +X compinit     && compinit
+
+# enable file autocompletion for 'start' utility
+complete -f start
