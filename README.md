@@ -42,6 +42,8 @@
       - [fingerprint](./.config/sh.d/scripts/fingerprint)
       - [from_epoch_to_date](./.config/sh.d/scripts/from_epoch_to_date)
       - [now](./.config/sh.d/scripts/now)
+      - [pg_terminate_backend](./.config/sh.d/scripts/pg_terminate_backend)
+      - [start](./.config/sh.d/scripts/start)
   - [zsh.d](./.config/zsh.d)
     - [autosuggestions.zsh](./.config/zsh.d/autosuggestions.zsh)
     - [cd.zsh](./.config/zsh.d/cd.zsh)

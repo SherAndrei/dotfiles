@@ -23,13 +23,12 @@ function cd() {
     #     with one more /mnt prefix as they are differ from other paths
     if [[ ! "${target}" =~ '/mnt/' ]]; then
       local converted
-      converted=$(wslpath -u "$target" 2>/dev/null)
+      converted="$(wslpath -u "$target" 2>/dev/null)"
       if [[ $? -eq 0 && -n "$converted" ]]; then
-        target="$converted"
+        target="${(q)converted}"
       fi
     fi
   fi;
 
   eval "$CD_CMD" "$target"
 }
-
