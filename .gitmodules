@@ -76,3 +76,6 @@
 [submodule ".vim/pack/code/start/vim-repeat"]
 	path = .vim/pack/code/start/vim-repeat
 	url = https://github.com/tpope/vim-repeat.git
+[submodule ".vim/pack/code/start/vimspector"]
+	path = .vim/pack/code/start/vimspector
+	url = https://github.com/puremourning/vimspector
