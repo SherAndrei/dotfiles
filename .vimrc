@@ -100,6 +100,19 @@ elseif has('python3')
   map <C-K> :py3f $HOME/.local/bin/clang-format.py<cr>
 endif
 
+function! InferSqlDialect()
+  let l:path = expand('%:p')
+  if l:path =~? 'sqlite'
+    return 'sqlite'
+  endif
+  return 'postgres'
+endfunction
+
+augroup SqlFormat
+  autocmd!
+  autocmd FileType sql execute 'map <buffer> <C-K> :%!sqlfluff format --dialect ' . InferSqlDialect() . ' -<cr>'
+augroup END
+
 " start with a tags file in the current directory and go up to the root
 " Source: https://stackoverflow.com/a/6289891/15751315
 set tags=./tags;/;
